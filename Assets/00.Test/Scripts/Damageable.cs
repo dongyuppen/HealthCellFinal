@@ -2,9 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
+
 
 public class Damageable : MonoBehaviour
+
 {
+     [SerializeField]
+    private Slider hpBar; //체력바 슬라이더 변수 
+
+
+
     public UnityEvent<int, Vector2> damageableHit;
 
     Animator animator;
@@ -84,6 +92,9 @@ public class Damageable : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        //hpBar.value = (int) Health / (int) MaxHealth; 
+        //슬라이더는 기본적으로 최소값 0, 최대값 1이기에 fill에 현채 채력 값 넣으려면  현재체력 / 최대 체력을 해줘야함 
+    
     }
 
     private void Update()
@@ -107,6 +118,7 @@ public class Damageable : MonoBehaviour
         if (IsAlive && !isInvincible)
         {
             Health -= damage;
+            //HandleHp();
             isInvincible = true;
 
             // Notify other subscribed components that the damageable was hit to handle the knockback and such
@@ -114,12 +126,21 @@ public class Damageable : MonoBehaviour
             LockVelocity = true;
             damageableHit?.Invoke(damage, knockback);
             CharacterEvents.characterDamaged.Invoke(gameObject, damage);
+          
 
             return true;
-        }
 
+            
+        }
         // Unable to be hit
         return false;
+    }
+
+    public void HandleHp()  // 호출 될 때 마다 hpBar의 value 값을 초기화
+    {
+       // hpBar.value = (int) Health / (int) MaxHealth; 
+       
+
     }
 
 

@@ -66,7 +66,7 @@ public class Damageable : MonoBehaviour
     private bool isInvincible = false;
 
     private float timeSinceHit = 0;
-    public float invinsibilityTime = 0.25f;
+    public float invincibilityTime = 1f;
     // Duration of invicibility after being hit
 
 
@@ -112,9 +112,9 @@ public class Damageable : MonoBehaviour
         // Update invincibility state(timer)
         if (isInvincible)
         {
-            if (timeSinceHit > invinsibilityTime)
+            if (timeSinceHit > invincibilityTime)
             {
-                // Remove invinsibility
+                // Remove invincibility
                 isInvincible = false;
                 timeSinceHit = 0;
             }

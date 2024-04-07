@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 1164893850826127460}
   m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -598,6 +598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 956f0614cce563b47943cb07417557cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hpBar: {fileID: 0}
   damageableHit:
     m_PersistentCalls:
       m_Calls:

@@ -10,6 +10,7 @@ public class EnemyDamageable : MonoBehaviour
 {
     // Event for when the damageble object is hit, includes damage amount and knockback direction
     public UnityEvent<int, Vector2> damageableHit;
+    public UnityEvent damageableDeath;
 
     public UnityEvent<int, int> healthChanged;
 
@@ -78,6 +79,11 @@ public class EnemyDamageable : MonoBehaviour
             _isAlive = value;
             animator.SetBool(AnimationsStrings.isAlive, value);
             Debug.Log("IsAlive set " + value);
+
+            if (value == false)
+            {
+                damageableDeath.Invoke();
+            }
         }
     }
 

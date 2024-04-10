@@ -215,10 +215,10 @@ GameObject:
   - component: {fileID: 6251156869617588601}
   - component: {fileID: 8975226585466818335}
   - component: {fileID: 3074721725574544543}
-  - component: {fileID: 1081743621831569701}
+  - component: {fileID: 1613065034792348830}
   m_Layer: 8
   m_Name: KnightEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -426,7 +426,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1081743621831569701
+--- !u!114 &1613065034792348830
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -435,7 +435,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3187083832242843026}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 956f0614cce563b47943cb07417557cb, type: 3}
+  m_Script: {fileID: 11500000, guid: f170491a4f591b145918749c93581508, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damageableHit:
@@ -453,11 +453,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  healthChanged:
+    m_PersistentCalls:
+      m_Calls: []
   _maxHealth: 100
   _health: 100
   _isAlive: 1
   isInvincible: 0
-  invinsibilityTime: 0.25
+  invincibilityTime: 0.25
 --- !u!1 &7530257377077265566
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,7 +471,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2735022230958669287}
   - component: {fileID: 232705838748215957}
-  - component: {fileID: 3357316937976558148}
+  - component: {fileID: 591081365827188254}
   m_Layer: 10
   m_Name: SwordAttack
   m_TagString: Untagged
@@ -542,7 +545,7 @@ PolygonCollider2D:
       - {x: 0.4615209, y: -1.0382187}
       - {x: 0.715477, y: 0.23213422}
   m_UseDelaunayMesh: 0
---- !u!114 &3357316937976558148
+--- !u!114 &591081365827188254
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -551,7 +554,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7530257377077265566}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd3aa60b62435604999667be870e06d2, type: 3}
+  m_Script: {fileID: 11500000, guid: 421f7acc345c5554499408a2a543ac9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 10

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,8 @@ public class EnemyDamageable : MonoBehaviour
     public UnityEvent<int, int> healthChanged;
 
     Animator animator;
+
+    public GameObject itemPrefab; // 몬스터가 드롭할 아이템 프리팹
 
     [SerializeField]
     private int _maxHealth = 100;
@@ -83,6 +86,20 @@ public class EnemyDamageable : MonoBehaviour
             if (value == false)
             {
                 damageableDeath.Invoke();
+                DropItem(); // 죽었을 때 DropItem함수 실행
+            }
+        }
+    }
+
+    // 50% 확률로 아이템을 떨구는 코드
+    private void DropItem()
+    {
+        if (itemPrefab != null)
+        {
+            float dropChance = UnityEngine.Random.value; // 0과 1사이의 랜덤한 값을 얻음
+            if (dropChance < 0.5f) // 50%확률로 아이템을 드롭하도록 설정
+            {
+                Instantiate(itemPrefab, transform.position, Quaternion.identity);
             }
         }
     }

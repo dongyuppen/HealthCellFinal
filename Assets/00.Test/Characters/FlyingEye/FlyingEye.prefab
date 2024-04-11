@@ -348,6 +348,7 @@ MonoBehaviour:
   healthChanged:
     m_PersistentCalls:
       m_Calls: []
+  itemPrefab: {fileID: 4648046248255741443, guid: 8ec65aba17869c447ac084d31cac78f4, type: 3}
   _maxHealth: 50
   _health: 50
   _isAlive: 1

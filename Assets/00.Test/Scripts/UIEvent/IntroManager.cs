@@ -35,7 +35,7 @@ public class IntroManager : MonoBehaviour
 
      public void GoGameScene2() 
     {
-        SceneManager.LoadScene("TestScene0406_3"); 
+        SceneManager.LoadScene("TestScene0411"); 
        // GameplayScene
     }
 

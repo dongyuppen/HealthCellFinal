@@ -17,7 +17,7 @@ public class EnemyDamageable : MonoBehaviour
 
     Animator animator;
 
-    public GameObject itemPrefab; // ¸ó½ºÅÍ°¡ µå·ÓÇÒ ¾ÆÀÌÅÛ ÇÁ¸®ÆÕ
+    public GameObject itemPrefab; // ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     [SerializeField]
     private int _maxHealth = 100;
@@ -86,18 +86,18 @@ public class EnemyDamageable : MonoBehaviour
             if (value == false)
             {
                 damageableDeath.Invoke();
-                DropItem(); // Á×¾úÀ» ¶§ DropItemÇÔ¼ö ½ÇÇà
+                DropItem(); // ï¿½×¾ï¿½ï¿½ï¿½ ï¿½ï¿½ DropItemï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½
             }
         }
     }
 
-    // 50% È®·ü·Î ¾ÆÀÌÅÛÀ» ¶³±¸´Â ÄÚµå
+    // 50% È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
     private void DropItem()
     {
         if (itemPrefab != null)
         {
-            float dropChance = UnityEngine.Random.value; // 0°ú 1»çÀÌÀÇ ·£´ýÇÑ °ªÀ» ¾òÀ½
-            if (dropChance < 0.5f) // 50%È®·ü·Î ¾ÆÀÌÅÛÀ» µå·ÓÇÏµµ·Ï ¼³Á¤
+            float dropChance = UnityEngine.Random.value; // 0ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            if (dropChance < 0.5f) // 50%È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             {
                 Instantiate(itemPrefab, transform.position, Quaternion.identity);
             }

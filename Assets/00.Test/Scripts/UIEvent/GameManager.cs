@@ -37,11 +37,13 @@ public class GameManager : MonoBehaviour
     {
         activated = false;
         go.SetActive(false);
+        ResumeGame();
         //theAudio.Play(cancel_sound);
     }
 
     public void GoTitle() //타이틀로
     {
+        ResumeGame();
         SceneManager.LoadScene("IntroScene"); 
         activated = false;
         go.SetActive(false);

@@ -62,8 +62,8 @@ public class Damageable : MonoBehaviour
     private bool _isAlive = true;
 
     // Flag indicating invincibility of the damageable entity
-    [SerializeField]
-    private bool isInvincible = false;
+    //[SerializeField]
+    public bool isInvincible = false;
 
     private float timeSinceHit = 0;
     public float invincibilityTime = 1f;

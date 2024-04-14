@@ -15,6 +15,10 @@ public class Damageable : MonoBehaviour
 
     Animator animator;
 
+    // 플레이어의 투명도를 조절할 색상 프로퍼티
+    private Color originalColor;
+    private SpriteRenderer spriteRenderer;
+
     [SerializeField]
     private int _maxHealth = 100;
 
@@ -58,8 +62,8 @@ public class Damageable : MonoBehaviour
     private bool _isAlive = true;
 
     // Flag indicating invincibility of the damageable entity
-    [SerializeField]
-    private bool isInvincible = false;
+    //[SerializeField]
+    public bool isInvincible = false;
 
     private float timeSinceHit = 0;
     public float invincibilityTime = 1f;
@@ -100,6 +104,12 @@ public class Damageable : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    private void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
+    }
+
     private void Update()
     {
         // Update invincibility state(timer)
@@ -116,11 +126,31 @@ public class Damageable : MonoBehaviour
         }
     }
 
+    // Hit 함수 내부에서 호출되어 플레이어를 투명하게 만드는 함수
+    private void MakePlayerTransparent(float duration, float alphaValue)
+    {
+        Color tempColor = spriteRenderer.color;
+        tempColor.a = alphaValue;
+        spriteRenderer.color = tempColor;
+
+        // 일정 시간 후에 원래 색상으로 돌아오도록 설정
+        Invoke("ResetPlayerColor", duration);
+    }
+
+    // 플레이어 색상을 초기 상태로 되돌리는 함수
+    private void ResetPlayerColor()
+    {
+        spriteRenderer.color = originalColor;
+    }
+
     // Returns whether the damageable took damage or not
     public bool Hit(int damage, Vector2 knockback) // Function to handle when the damageable entity is hit
     {
         if (IsAlive && !isInvincible)
         {
+            // 플레이어 투명도 조절
+            MakePlayerTransparent(0.5f, 0.5f);
+
             // Reduce health by damage amount
             Health -= damage;
             
@@ -131,7 +161,7 @@ public class Damageable : MonoBehaviour
             LockVelocity = true;
             damageableHit?.Invoke(damage, knockback);
             CharacterEvents.characterDamaged.Invoke(gameObject, damage);
-          
+            
             return true;
         }
         // Unable to be hit

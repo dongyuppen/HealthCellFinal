@@ -14,6 +14,17 @@ public class PlayerController : MonoBehaviour
     public float airWalkSpeed = 3f;
     public float jumpImpulse = 10f;
 
+
+    private bool canDash = true; // 대쉬 가능 여부
+    private bool isDashing; // 대쉬 중일때 체크
+    private float dashingPower = 20f; // 대쉬 파워
+    private float dashingTime = 0.2f; // 대쉬 지속 시간
+    private float dashingCooldown = 1f; // 대쉬 쿨타임
+
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private TrailRenderer tr;
+
     // Input value for movement
     Vector2 moveInput;
 
@@ -118,8 +129,26 @@ public class PlayerController : MonoBehaviour
         damageable = GetComponent<Damageable>();
     }
 
+    private void Update()
+    {
+        if (isDashing)
+        {
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Z) && canDash)
+        {
+            StartCoroutine(Dash());
+        }
+    }
+
     private void FixedUpdate()
     {
+        if (isDashing)
+        {
+            return;
+        }
+
         // If the player is not locked in velocity, update the velocity based on movement input
         if (!damageable.LockVelocity)
         {
@@ -206,6 +235,25 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
         }
     }
+
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        damageable.isInvincible = true; // 무적 활성화
+        float originalGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
+        rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+        tr.emitting = true;
+        yield return new WaitForSeconds(dashingTime);
+        tr.emitting = false;
+        rb.gravityScale = originalGravity;
+        isDashing = false;
+        damageable.isInvincible = false; // 무적 비활성화
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
+    }
+
 
     // Method called by the input system when the attack input action is started
     public void OnAttack(InputAction.CallbackContext context)

@@ -17,7 +17,11 @@ public class EnemyDamageable : MonoBehaviour
 
     Animator animator;
 
+<<<<<<< HEAD
     public GameObject itemPrefab; // ���Ͱ� ����� ������ ������
+=======
+    public GameObject itemPrefab;  // pickup item Prefab
+>>>>>>> a66019e7a50f8ba27df227e09490af7801fd2b8c
 
     [SerializeField]
     private int _maxHealth = 100;
@@ -86,18 +90,31 @@ public class EnemyDamageable : MonoBehaviour
             if (value == false)
             {
                 damageableDeath.Invoke();
+<<<<<<< HEAD
                 DropItem(); // �׾��� �� DropItem�Լ� ����
+=======
+                DropItem(); // 몬스터가 죽을 시 드롭 아이템 함수 실행
+>>>>>>> a66019e7a50f8ba27df227e09490af7801fd2b8c
             }
         }
     }
 
+<<<<<<< HEAD
     // 50% Ȯ���� �������� ������ �ڵ�
+=======
+    // 50% 확률로 아이템 드롭
+>>>>>>> a66019e7a50f8ba27df227e09490af7801fd2b8c
     private void DropItem()
     {
         if (itemPrefab != null)
         {
+<<<<<<< HEAD
             float dropChance = UnityEngine.Random.value; // 0�� 1������ ������ ���� ����
             if (dropChance < 0.5f) // 50%Ȯ���� �������� ����ϵ��� ����
+=======
+            float dropChance = UnityEngine.Random.value; // 0부터 1까지의 무작위 값 생성
+            if (dropChance < 0.5f) // 50%확률로 작동하도록 검사
+>>>>>>> a66019e7a50f8ba27df227e09490af7801fd2b8c
             {
                 Instantiate(itemPrefab, transform.position, Quaternion.identity);
             }

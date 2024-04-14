@@ -8,6 +8,7 @@ TagManager:
   - Potal
   - Boss
   - Enemy
+  - BreakTile
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - EnemyHitbox
   - GroundDetection
   - Pickup
-  - 
+  - BreakTile
   - 
   - 
   - 

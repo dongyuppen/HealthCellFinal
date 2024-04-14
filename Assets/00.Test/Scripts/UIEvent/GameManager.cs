@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement; // 이걸 써야 씬 전환 가능한 코드 사용가능
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {

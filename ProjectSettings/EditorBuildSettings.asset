@@ -12,11 +12,8 @@ EditorBuildSettings:
     path: Assets/00.Test/Scenes/CtlScene.unity
     guid: b355b4e2f5fe74539b5f932c250742ba
   - enabled: 1
-    path: Assets/00.Test/Scenes/TestScene0411.unity
-    guid: 785ac45aa369ff242a52cf28a47dd685
-  - enabled: 0
-    path: Assets/00.Test/Scenes/TestScene0406_3.unity
-    guid: 63b8c57976c3a6247abf24a2f784335e
+    path: Assets/00.Test/Scenes/TestScene0413_shs2.unity
+    guid: b1f212f68d7ab834cabcc8e7ca8f1608
   - enabled: 0
     path: Assets/00.Test/Scenes/GameplayScene_Final.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02

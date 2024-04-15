@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
             
         
     }*/
+
     public GameObject go;
    
     public AudioClip theAudio;
@@ -29,46 +30,8 @@ public class GameManager : MonoBehaviour
     public String call_sound;
     public String cancel_sound;  
     private bool activated;
-    public void Exit()
-    {
-        Application.Quit();  //게임 종료
-    }
 
-    public void Continue() //계속
-    {
-        activated = false;
-        go.SetActive(false);
-        ResumeGame();
-        //theAudio.Play(cancel_sound);
-    }
-
-    public void GoTitle() //타이틀로
-    {
-        ResumeGame();
-        SceneManager.LoadScene("IntroScene"); 
-        activated = false;
-        go.SetActive(false);
-    }
-    
-
-    public GameObject pauseMenu;
-    public static bool isPause;
-    public void PauseGame()
-    {
-        pauseMenu.SetActive(true);
-        Time.timeScale = 0f;
-        isPause = true;
-    }
-
-    public void ResumeGame()
-    {
-        pauseMenu.SetActive(false);
-        Time.timeScale = 1f;
-        isPause = false;
-    }
-
-    // Update is called once per frame
-    void Update()
+     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
@@ -94,5 +57,39 @@ public class GameManager : MonoBehaviour
             }
         }
        
+    }
+    public void Continue() //계속
+    {
+        activated = false;
+        go.SetActive(false);
+        ResumeGame();
+        //theAudio.Play(cancel_sound);
+    }
+    public void GoTitle() //타이틀로
+    {
+        ResumeGame();
+        SceneManager.LoadScene("IntroScene"); 
+        activated = false;
+        go.SetActive(false);
+        
+    }
+     public GameObject pauseMenu;
+    public static bool isPause;
+    public void PauseGame()
+    {
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+        isPause = true;
+    }
+
+    public void ResumeGame()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        isPause = false;
+    }
+    public void Exit()
+    {
+        Application.Quit();  //게임 종료
     }
 }

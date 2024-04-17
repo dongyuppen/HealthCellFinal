@@ -11,6 +11,8 @@ public class Knight : MonoBehaviour
     public float walkAcceleration = 3f;
     public float maxSpeed = 3f;
     public float walkStopRate = 0.05f;
+    public float moveDuration = 3f;
+    public float idleDuration = 2f; 
 
     // Reference to detection zones for attack and cliff detection
     public DetectionZone attackZone;
@@ -83,6 +85,9 @@ public class Knight : MonoBehaviour
             animator.SetFloat(AnimationsStrings.attackCooldown, Mathf.Max(value, 0));
         } }
 
+    private float timer = 0f; 
+    private bool isMoving = false; 
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -93,6 +98,31 @@ public class Knight : MonoBehaviour
 
     private void Update()
     {
+      
+        if (!isMoving)
+        {
+            timer += Time.deltaTime;
+            if (timer >= idleDuration)
+            {
+                StartMoving();
+            }
+
+           
+            animator.SetBool("canMove", false);
+        }
+        else
+        {
+            
+            timer += Time.deltaTime;
+            if (timer >= moveDuration)
+            {
+                StopMoving();
+            }
+
+            
+            animator.SetBool("canMove", true);
+        }
+
         // Update whether the knight has a target based on detected colliders in the attack zone
         HasTarget = attackZone.detectedColliders.Count > 0;
 
@@ -114,7 +144,7 @@ public class Knight : MonoBehaviour
         // Adjust velocity based on movement parameters
         if (!damageable.LockVelocity)
         {
-            if (CanMove && touchingDirections.IsGrounded)
+            if (CanMove && touchingDirections.IsGrounded && isMoving)
             {
                 // Accelerate towards max Speed
                 rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x + (walkAcceleration * walkDirectionVector.x * Time.fixedDeltaTime), -maxSpeed, maxSpeed), rb.velocity.y);
@@ -144,6 +174,18 @@ public class Knight : MonoBehaviour
             // Log an error if the walkable direction is not set correctly
             Debug.LogError("Current walkable direction is not set to legal values of right or left");
         }
+    }
+
+    private void StartMoving()
+    {
+        timer = 0f; 
+        isMoving = true;
+    }
+
+    private void StopMoving()
+    {
+        timer = 0f; 
+        isMoving = false;
     }
 
     // Method called when the knight is hit

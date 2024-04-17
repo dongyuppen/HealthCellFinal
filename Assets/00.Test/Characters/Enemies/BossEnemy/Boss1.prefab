@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2045443431384282746}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.98, y: -1.68, z: 0}
+  m_LocalPosition: {x: 0.98, y: -1.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -286,7 +286,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c90a9b7af6a033048abf231a61a0767f, type: 3}
+  m_Sprite: {fileID: 455134923, guid: 3b8f5f523542fa84b9285d6106d062e0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -356,8 +356,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.079162, y: -0.021921396}
-  m_Size: {x: 0.94196916, y: 2.2888155}
+  m_Offset: {x: 0.0020828247, y: -0.00566864}
+  m_Size: {x: 0.7144623, y: 1.0049896}
   m_Direction: 0
 --- !u!114 &3691061963377446153
 MonoBehaviour:
@@ -457,9 +457,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  damageableDeath:
+    m_PersistentCalls:
+      m_Calls: []
   healthChanged:
     m_PersistentCalls:
       m_Calls: []
+  itemPrefab: {fileID: 0}
   _maxHealth: 100
   _health: 100
   _isAlive: 1

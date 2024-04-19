@@ -8,6 +8,8 @@ public class IntroManager : MonoBehaviour
     public GameObject StartPanel;
     public GameObject IntroPanel;
 
+    //public GameObject LoadingPanel;
+
     // Start is called before the first frame update
     void Start()
     {

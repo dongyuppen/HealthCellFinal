@@ -15,11 +15,11 @@ public class PlayerController : MonoBehaviour
     public float jumpImpulse = 10f;
 
 
-    private bool canDash = true; // ´ë½¬ °¡´É ¿©ºÎ
-    private bool isDashing; // ´ë½¬ ÁßÀÏ¶§ Ã¼Å©
-    private float dashingPower = 20f; // ´ë½¬ ÆÄ¿ö
-    private float dashingTime = 0.2f; // ´ë½¬ Áö¼Ó ½Ã°£
-    private float dashingCooldown = 1f; // ´ë½¬ ÄðÅ¸ÀÓ
+    private bool canDash = true; // ï¿½ë½¬ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    private bool isDashing; // ï¿½ë½¬ ï¿½ï¿½ï¿½Ï¶ï¿½ Ã¼Å©
+    private float dashingPower = 20f; // ï¿½ë½¬ ï¿½Ä¿ï¿½
+    private float dashingTime = 0.2f; // ï¿½ë½¬ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+    private float dashingCooldown = 1f; // ï¿½ë½¬ ï¿½ï¿½Å¸ï¿½ï¿½
 
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
@@ -240,7 +240,7 @@ public class PlayerController : MonoBehaviour
     {
         canDash = false;
         isDashing = true;
-        damageable.isInvincible = true; // ¹«Àû È°¼ºÈ­
+        damageable.isInvincible = true; // ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
         rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
@@ -249,7 +249,7 @@ public class PlayerController : MonoBehaviour
         tr.emitting = false;
         rb.gravityScale = originalGravity;
         isDashing = false;
-        damageable.isInvincible = false; // ¹«Àû ºñÈ°¼ºÈ­
+        damageable.isInvincible = false; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class Damageable : MonoBehaviour
@@ -15,7 +16,7 @@ public class Damageable : MonoBehaviour
 
     Animator animator;
 
-    // ÇÃ·¹ÀÌ¾îÀÇ Åõ¸íµµ¸¦ Á¶ÀýÇÒ »ö»ó ÇÁ·ÎÆÛÆ¼
+    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼
     private Color originalColor;
     private SpriteRenderer spriteRenderer;
 
@@ -53,10 +54,21 @@ public class Damageable : MonoBehaviour
             if (_health <= 0)
             {
                 IsAlive = false;
+                 StartCoroutine(Die(2));
+                 
             }
         }
     }
+    IEnumerator Die(float time)
+    {
+        yield return new WaitForSeconds(time); 
+         SceneManager.LoadScene("DieScene"); 
 
+    }
+
+
+
+    
     // Flag indicating whether the damageable entity is alive or not
     [SerializeField]
     private bool _isAlive = true;
@@ -126,18 +138,18 @@ public class Damageable : MonoBehaviour
         }
     }
 
-    // Hit ÇÔ¼ö ³»ºÎ¿¡¼­ È£ÃâµÇ¾î ÇÃ·¹ÀÌ¾î¸¦ Åõ¸íÇÏ°Ô ¸¸µå´Â ÇÔ¼ö
+    // Hit ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½ È£ï¿½ï¿½Ç¾ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     private void MakePlayerTransparent(float duration, float alphaValue)
     {
         Color tempColor = spriteRenderer.color;
         tempColor.a = alphaValue;
         spriteRenderer.color = tempColor;
 
-        // ÀÏÁ¤ ½Ã°£ ÈÄ¿¡ ¿ø·¡ »ö»óÀ¸·Î µ¹¾Æ¿Àµµ·Ï ¼³Á¤
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Invoke("ResetPlayerColor", duration);
     }
 
-    // ÇÃ·¹ÀÌ¾î »ö»óÀ» ÃÊ±â »óÅÂ·Î µÇµ¹¸®´Â ÇÔ¼ö
+    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½Çµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     private void ResetPlayerColor()
     {
         spriteRenderer.color = originalColor;
@@ -148,7 +160,7 @@ public class Damageable : MonoBehaviour
     {
         if (IsAlive && !isInvincible)
         {
-            // ÇÃ·¹ÀÌ¾î Åõ¸íµµ Á¶Àý
+            // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             MakePlayerTransparent(0.5f, 0.5f);
 
             // Reduce health by damage amount

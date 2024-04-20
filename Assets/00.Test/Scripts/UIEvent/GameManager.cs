@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement; // 이걸 써야 씬 전환 가능한 코드 사용가능
 using TMPro;
+using System.Xml.Serialization;
 
 public class GameManager : MonoBehaviour
 {
@@ -68,7 +69,7 @@ public class GameManager : MonoBehaviour
     public void GoTitle() //타이틀로
     {
         ResumeGame();
-        SceneManager.LoadScene("IntroScene"); 
+        SceneManager.LoadScene("LoadingScene"); 
         activated = false;
         go.SetActive(false);
         
@@ -91,5 +92,11 @@ public class GameManager : MonoBehaviour
     public void Exit()
     {
         Application.Quit();  //게임 종료
+    }
+
+    public void ProgressiveOverload ()  //점진적 과부화 (죽으면 다시 살아남)
+    {
+         SceneManager.LoadScene("TestScene0420_1610"); 
+         
     }
 }

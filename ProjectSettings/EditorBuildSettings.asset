@@ -15,6 +15,12 @@ EditorBuildSettings:
     path: Assets/00.Test/Scenes/CtlScene.unity
     guid: b355b4e2f5fe74539b5f932c250742ba
   - enabled: 1
+    path: Assets/00.Test/Scenes/TestScene0420_1610.unity
+    guid: 7e505886b943dbc4d81bd6bf222e11c8
+  - enabled: 0
+    path: Assets/00.Test/Scenes/TestScene0418_2250.unity
+    guid: 8c66245ffe50f0647a6a4e9c2ebd5c58
+  - enabled: 0
     path: Assets/00.Test/Scenes/TestScene0418_0005.unity
     guid: 28919810eb17b924c852e9c544923a3d
   - enabled: 0

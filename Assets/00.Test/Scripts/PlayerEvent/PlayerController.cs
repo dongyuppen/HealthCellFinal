@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     public float airWalkSpeed = 3f;
     public float jumpImpulse = 10f;
 
+    //Check player on platform && platform Rb
+    public bool isOnPlatform;
+    public Rigidbody2D platformRb;
 
     private bool canDash = true; // �뽬 ���� ����
     private bool isDashing; // �뽬 ���϶� üũ
@@ -65,7 +68,7 @@ public class PlayerController : MonoBehaviour
                     return 0;
                 }
             }
-            else 
+            else
             {
                 // Movement Locked
                 return 0;
@@ -77,7 +80,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private bool _isMoving = false;
 
-    public bool IsMoving { get
+    public bool IsMoving
+    {
+        get
         {
             return _isMoving;
         }
@@ -108,15 +113,20 @@ public class PlayerController : MonoBehaviour
     // Flag indicating the direction the player is facing
     public bool _isFacingRight = true;
 
-    public bool IsFacingRight { get { return _isFacingRight; } private set { 
+    public bool IsFacingRight
+    {
+        get { return _isFacingRight; }
+        private set
+        {
             if (_isFacingRight != value)
             {
                 // Flip the local scale to make the player face the opposite direction
                 transform.localScale *= new Vector2(-1, 1);
             }
             _isFacingRight = value;
-        
-        } }
+
+        }
+    }
 
     Rigidbody2D rb;
     Animator animator;
@@ -144,6 +154,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         if (isDashing)
         {
             return;
@@ -152,11 +163,24 @@ public class PlayerController : MonoBehaviour
         // If the player is not locked in velocity, update the velocity based on movement input
         if (!damageable.LockVelocity)
         {
-            rb.velocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.velocity.y);
+            //check Moving Platform
+            if (isOnPlatform)
+            {
+                //Player Move Speed plus, Platform Move Speed
+                rb.velocity = new Vector2(moveInput.x * CurrentMoveSpeed + platformRb.velocity.x, rb.velocity.y);
 
-            // Update yVelocity parameter in animator
-            animator.SetFloat(AnimationsStrings.yVelocity, rb.velocity.y);
+                // Update yVelocity parameter in animator
+                animator.SetFloat(AnimationsStrings.yVelocity, rb.velocity.y);
+            }
+            else
+            {
+                rb.velocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.velocity.y);
+
+                // Update yVelocity parameter in animator
+                animator.SetFloat(AnimationsStrings.yVelocity, rb.velocity.y);
+            }
         }
+
     }
 
     // Method called by the input system when move input is received
@@ -194,7 +218,9 @@ public class PlayerController : MonoBehaviour
     }
 
     // Property to check if the player can move
-    public bool CanMove { get
+    public bool CanMove
+    {
+        get
         {
             return animator.GetBool(AnimationsStrings.canMove);
         }

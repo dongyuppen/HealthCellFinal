@@ -18,11 +18,11 @@ public class PlayerController : MonoBehaviour
     public bool isOnPlatform;
     public Rigidbody2D platformRb;
 
-    private bool canDash = true; // �뽬 ���� ����
-    private bool isDashing; // �뽬 ���϶� üũ
-    private float dashingPower = 20f; // �뽬 �Ŀ�
-    private float dashingTime = 0.2f; // �뽬 ���� �ð�
-    private float dashingCooldown = 1f; // �뽬 ��Ÿ��
+    private bool canDash = true; 
+    private bool isDashing; 
+    private float dashingPower = 20f;
+    private float dashingTime = 0.2f; 
+    private float dashingCooldown = 1f;
 
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
@@ -266,7 +266,7 @@ public class PlayerController : MonoBehaviour
     {
         canDash = false;
         isDashing = true;
-        damageable.isInvincible = true; // ���� Ȱ��ȭ
+        damageable.isInvincible = true; 
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
         rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
@@ -275,7 +275,7 @@ public class PlayerController : MonoBehaviour
         tr.emitting = false;
         rb.gravityScale = originalGravity;
         isDashing = false;
-        damageable.isInvincible = false; // ���� ��Ȱ��ȭ
+        damageable.isInvincible = false;
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
     }

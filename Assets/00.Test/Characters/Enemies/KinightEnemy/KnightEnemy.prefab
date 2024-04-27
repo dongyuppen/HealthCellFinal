@@ -462,6 +462,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   itemPrefab: {fileID: 4648046248255741443, guid: 8ec65aba17869c447ac084d31cac78f4, type: 3}
+  coinPrefab: {fileID: 8723141660958273806, guid: 922229316f37bfb4bb2a26b1e559a00f, type: 3}
   _maxHealth: 100
   _health: 100
   _isAlive: 1

@@ -20,6 +20,7 @@ public class EnemyDamageable : MonoBehaviour
 
 
     public GameObject itemPrefab;  // pickup item Prefab
+    public GameObject coinPrefab; // oin Prefab
 
 
     [SerializeField]
@@ -89,11 +90,8 @@ public class EnemyDamageable : MonoBehaviour
             if (value == false)
             {
                 damageableDeath.Invoke();
-
-                DropItem(); // �׾��� �� DropItem�Լ� ����
-
-                DropItem(); // 몬스터가 죽을 시 드롭 아이템 함수 실행
-
+                DropItem();
+                DropCoin();
             }
         }
     }
@@ -102,13 +100,19 @@ public class EnemyDamageable : MonoBehaviour
     {
         if (itemPrefab != null)
         {
-
-            float dropChance = UnityEngine.Random.value; // 0�� 1������ ������ ���� ����
-            if (dropChance < 0.5f) // 50%Ȯ���� �������� ����ϵ��� ����
-
+            float dropChance = UnityEngine.Random.value; 
+            if (dropChance < 0.5f) // 50% Drop Chance
             {
                 Instantiate(itemPrefab, transform.position, Quaternion.identity);
             }
+        }
+    }
+
+    private void DropCoin()
+    {
+        if (coinPrefab != null)
+        {
+                Instantiate(coinPrefab, transform.position, Quaternion.identity);   
         }
     }
 

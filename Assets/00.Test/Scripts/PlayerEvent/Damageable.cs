@@ -16,7 +16,7 @@ public class Damageable : MonoBehaviour
 
     Animator animator;
 
-    // �÷��̾��� �������� ������ ���� ������Ƽ
+    
     private Color originalColor;
     private SpriteRenderer spriteRenderer;
 
@@ -138,18 +138,18 @@ public class Damageable : MonoBehaviour
         }
     }
 
-    // Hit �Լ� ���ο��� ȣ��Ǿ� �÷��̾ �����ϰ� ����� �Լ�
+    
     private void MakePlayerTransparent(float duration, float alphaValue)
     {
         Color tempColor = spriteRenderer.color;
         tempColor.a = alphaValue;
         spriteRenderer.color = tempColor;
 
-        // ���� �ð� �Ŀ� ���� �������� ���ƿ����� ����
+     
         Invoke("ResetPlayerColor", duration);
     }
 
-    // �÷��̾� ������ �ʱ� ���·� �ǵ����� �Լ�
+  
     private void ResetPlayerColor()
     {
         spriteRenderer.color = originalColor;
@@ -160,7 +160,7 @@ public class Damageable : MonoBehaviour
     {
         if (IsAlive && !isInvincible)
         {
-            // �÷��̾� ������ ����
+        
             MakePlayerTransparent(0.5f, 0.5f);
 
             // Reduce health by damage amount

@@ -461,6 +461,7 @@ MonoBehaviour:
   healthChanged:
     m_PersistentCalls:
       m_Calls: []
+  monsterData: {fileID: 11400000, guid: e55b61ceab6515d42a3289ad097b00c6, type: 2}
   itemPrefab: {fileID: 4648046248255741443, guid: 8ec65aba17869c447ac084d31cac78f4, type: 3}
   coinPrefab: {fileID: 8723141660958273806, guid: 922229316f37bfb4bb2a26b1e559a00f, type: 3}
   _maxHealth: 100
@@ -564,5 +565,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 421f7acc345c5554499408a2a543ac9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterData: {fileID: 11400000, guid: e55b61ceab6515d42a3289ad097b00c6, type: 2}
   attackDamage: 10
   knockback: {x: 5, y: 2}

@@ -17,7 +17,8 @@ public class EnemyDamageable : MonoBehaviour
 
     Animator animator;
 
-
+    // Reference to the ScriptableObject containing monster's data
+    public SOMonster monsterData;
 
     public GameObject itemPrefab;  // pickup item Prefab
     public GameObject coinPrefab; // Coin Prefab
@@ -133,6 +134,7 @@ public class EnemyDamageable : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        InitializeHealthFromMonsterData();
     }
 
     private void Update()
@@ -148,6 +150,19 @@ public class EnemyDamageable : MonoBehaviour
             }
 
             timeSinceHit += Time.deltaTime;
+        }
+    }
+
+    private void InitializeHealthFromMonsterData()
+    {
+        if (monsterData != null)
+        {
+            _maxHealth = monsterData.maxHealth;
+            _health = _maxHealth;
+        }
+        else
+        {
+            Debug.LogWarning("Monster data is not assigned to EnemyDamageable!");
         }
     }
 

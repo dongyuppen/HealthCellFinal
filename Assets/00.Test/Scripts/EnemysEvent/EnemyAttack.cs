@@ -4,10 +4,30 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
+    // Reference to the ScriptableObject containing monster's data
+    public SOMonster monsterData;
+
     // Damage inflicted by the attack
     public int attackDamage = 10;
     // Knockback force applied to the target
     public Vector2 knockback = Vector2.zero;
+
+    private void Awake()
+    {
+        InitializeAttackDamageFromMonsterData();
+    }
+
+    private void InitializeAttackDamageFromMonsterData()
+    {
+        if (monsterData != null)
+        {
+            attackDamage = monsterData.attackDamage;
+        }
+        else
+        {
+            Debug.LogWarning("Monster data is not assigned to EnemyDamageable!");
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

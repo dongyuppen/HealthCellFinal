@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff1b5518d030a2246b53ee8338e07dfe, type: 3}
   m_Name: FlyingEnemy
   m_EditorClassIdentifier: 
-  str: 0
-  dex: 0
-  con: 0
+  attackDamage: 30
+  maxHealth: 50

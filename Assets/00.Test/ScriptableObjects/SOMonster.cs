@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu]
 public class SOMonster : ScriptableObject
 {
-    public int str; // strenth
-    public int dex; // dexterity
-    public int con; // Constitution
+    public int attackDamage; // attackDamage
+    public int maxHealth; // maxhealth
 }

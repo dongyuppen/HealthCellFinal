@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+
     // Damage inflicted by the projectile
     public int damage = 15;
     // Movement speed of the projectile

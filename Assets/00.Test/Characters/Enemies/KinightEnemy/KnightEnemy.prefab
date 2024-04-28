@@ -440,6 +440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f170491a4f591b145918749c93581508, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 1
   damageableHit:
     m_PersistentCalls:
       m_Calls:
@@ -565,6 +566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 421f7acc345c5554499408a2a543ac9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageable: {fileID: 0}
   monsterData: {fileID: 11400000, guid: e55b61ceab6515d42a3289ad097b00c6, type: 2}
   attackDamage: 10
   knockback: {x: 5, y: 2}

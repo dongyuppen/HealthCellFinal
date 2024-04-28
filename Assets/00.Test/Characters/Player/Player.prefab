@@ -102,6 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3aa60b62435604999667be870e06d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
+  playerData: {fileID: 11400000, guid: c70cd8219879f4e4bb6392a907ed412d, type: 2}
   attackDamage: 12
   knockback: {x: 0, y: 0}
 --- !u!1 &1672642434724949075
@@ -205,6 +207,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3aa60b62435604999667be870e06d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
+  playerData: {fileID: 11400000, guid: c70cd8219879f4e4bb6392a907ed412d, type: 2}
   attackDamage: 15
   knockback: {x: 1, y: 0}
 --- !u!1 &1954148848460138665
@@ -304,6 +308,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3aa60b62435604999667be870e06d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
+  playerData: {fileID: 11400000, guid: c70cd8219879f4e4bb6392a907ed412d, type: 2}
   attackDamage: 10
   knockback: {x: 1, y: 0}
 --- !u!1 &3901624260585253764
@@ -443,6 +449,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3aa60b62435604999667be870e06d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
+  playerData: {fileID: 11400000, guid: c70cd8219879f4e4bb6392a907ed412d, type: 2}
   attackDamage: 18
   knockback: {x: 0, y: 0}
 --- !u!1 &7897753560000167841
@@ -587,6 +595,8 @@ MonoBehaviour:
   runSpeed: 8
   airWalkSpeed: 7
   jumpImpulse: 10
+  isOnPlatform: 0
+  platformRb: {fileID: 0}
   groundCheck: {fileID: 8744419920091781973}
   groundLayer:
     serializedVersion: 2
@@ -849,6 +859,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 956f0614cce563b47943cb07417557cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
+  playerData: {fileID: 11400000, guid: c70cd8219879f4e4bb6392a907ed412d, type: 2}
   damageableHit:
     m_PersistentCalls:
       m_Calls:
@@ -988,6 +1000,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3aa60b62435604999667be870e06d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
+  playerData: {fileID: 11400000, guid: c70cd8219879f4e4bb6392a907ed412d, type: 2}
   attackDamage: 25
   knockback: {x: 5, y: 0}
 --- !u!1 &9010068081284270872

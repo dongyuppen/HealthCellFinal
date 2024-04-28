@@ -9,6 +9,8 @@ using UnityEngine.UI;
 public class EnemyDamageable : MonoBehaviour
 
 {
+    public int level;
+
     // Event for when the damageble object is hit, includes damage amount and knockback direction
     public UnityEvent<int, Vector2> damageableHit;
     public UnityEvent damageableDeath;
@@ -19,6 +21,7 @@ public class EnemyDamageable : MonoBehaviour
 
     // Reference to the ScriptableObject containing monster's data
     public SOMonster monsterData;
+
 
     public GameObject itemPrefab;  // pickup item Prefab
     public GameObject coinPrefab; // Coin Prefab
@@ -134,6 +137,7 @@ public class EnemyDamageable : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        InitializeLevelFromMonsterData();
         InitializeHealthFromMonsterData();
     }
 
@@ -150,6 +154,18 @@ public class EnemyDamageable : MonoBehaviour
             }
 
             timeSinceHit += Time.deltaTime;
+        }
+    }
+
+    private void InitializeLevelFromMonsterData()
+    {
+        if (monsterData != null)
+        {
+            level = monsterData.level;
+        }
+        else
+        {
+            Debug.LogWarning("Monster data is not assigned to EnemyAttack!");
         }
     }
 

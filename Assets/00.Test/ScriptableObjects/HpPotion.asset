@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50c06ed9e058764586fa659a5d1e5cc, type: 3}
   m_Name: HpPotion
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: HpPosition
   level: 0
   stat: []
-  maxStack: 0
-  price: 0
+  maxStack: 50
+  price: 100
   icon: {fileID: 0}
   prefab: {fileID: 0}
-  description: 
+  description: "Hp\uD3EC\uC158"

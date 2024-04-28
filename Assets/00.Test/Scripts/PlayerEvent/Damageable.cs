@@ -9,6 +9,12 @@ using UnityEngine.SceneManagement;
 public class Damageable : MonoBehaviour
 
 {
+    public int level;
+
+    // Reference to the ScriptableObject containing player's data
+    public SOPlayer playerData;
+
+
     // Event for when the damageble object is hit, includes damage amount and knockback direction
     public UnityEvent<int, Vector2> damageableHit;
 
@@ -114,6 +120,8 @@ public class Damageable : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        InitializeLevelFromPlayerData();
+        InitializeHealthFromPlayerData();
     }
 
     private void Start()
@@ -135,6 +143,31 @@ public class Damageable : MonoBehaviour
             }
 
             timeSinceHit += Time.deltaTime;
+        }
+    }
+
+    private void InitializeLevelFromPlayerData()
+    {
+        if (playerData != null)
+        {
+            level = playerData.level;
+        }
+        else
+        {
+            Debug.LogWarning("Player data is not assigned to Damageable!");
+        }
+    }
+
+    private void InitializeHealthFromPlayerData()
+    {
+        if (playerData != null)
+        {
+            _maxHealth = playerData.maxHealth;
+            _health = _maxHealth;
+        }
+        else
+        {
+            Debug.LogWarning("Player data is not assigned to Damageable!");
         }
     }
 

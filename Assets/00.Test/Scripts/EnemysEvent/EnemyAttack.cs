@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
+    public int level;
+
     // Reference to the ScriptableObject containing monster's data
     public SOMonster monsterData;
 
@@ -14,9 +16,21 @@ public class EnemyAttack : MonoBehaviour
 
     private void Awake()
     {
+        InitializeLevelFromMonsterData();
         InitializeAttackDamageFromMonsterData();
     }
 
+    private void InitializeLevelFromMonsterData()
+    {
+        if (monsterData != null)
+        {
+            level = monsterData.level;
+        }
+        else
+        {
+            Debug.LogWarning("Monster data is not assigned to EnemyAttack!");
+        }
+    }
     private void InitializeAttackDamageFromMonsterData()
     {
         if (monsterData != null)
@@ -25,7 +39,7 @@ public class EnemyAttack : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Monster data is not assigned to EnemyDamageable!");
+            Debug.LogWarning("Monster data is not assigned to EnemyAttack!");
         }
     }
 

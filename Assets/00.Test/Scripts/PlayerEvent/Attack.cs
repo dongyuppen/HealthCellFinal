@@ -4,10 +4,62 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
+    public int level;
+
+    // Reference to the ScriptableObject containing player's data
+    public SOPlayer playerData;
+
     // Damage inflicted by the attack
     public int attackDamage = 10;
     // Knockback force applied to the target
     public Vector2 knockback = Vector2.zero;
+
+
+    private void Awake()
+    {
+        InitializeLevelFromPlayerData();
+        InitializeAttackDamageFromPlayerData();
+    }
+
+    private void InitializeLevelFromPlayerData()
+    {
+        if (playerData != null)
+        {
+            level = playerData.level;
+        }
+        else
+        {
+            Debug.LogWarning("Player data is not assigned to Attack!");
+        }
+    }
+    private void InitializeAttackDamageFromPlayerData()
+    {
+        if (playerData != null && gameObject.name == "SwordAttack1")
+        {
+            attackDamage = playerData.attackDamage1;
+        }
+        else if((playerData != null && gameObject.name == "SwordAttack2"))
+        {
+            attackDamage = playerData.attackDamage2;
+        }
+        else if ((playerData != null && gameObject.name == "SwordAttack3"))
+        {
+            attackDamage = playerData.attackDamage3;
+        }
+        else if ((playerData != null && gameObject.name == "AirAttack1"))
+        {
+            attackDamage = playerData.airAttackDamage1;
+        }
+        else if ((playerData != null && gameObject.name == "AirAttack2"))
+        {
+            attackDamage = playerData.airAttackDamage2;
+        }
+        
+        else
+        {
+            Debug.LogWarning("PlayerData is not assigned to Attack!");
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: IDT_GroundEnemy
   m_EditorClassIdentifier: 
   items:
+  - item: {fileID: 11400000, guid: e49233ff81455b741ad3c4277bbc2766, type: 2}
+    weight: 100
+  - item: {fileID: 11400000, guid: 1ffc1c1462a0de544bc7fb04841f2ffb, type: 2}
+    weight: 50
   - item: {fileID: 0}
-    weight: 0
-  - item: {fileID: 0}
-    weight: 0
+    weight: 150

@@ -138,7 +138,8 @@ public class Damageable : MonoBehaviour
         }
     }
 
-    
+    //Original Code: make player opacity
+    /* 
     private void MakePlayerTransparent(float duration, float alphaValue)
     {
         Color tempColor = spriteRenderer.color;
@@ -154,14 +155,32 @@ public class Damageable : MonoBehaviour
     {
         spriteRenderer.color = originalColor;
     }
+    */
+
+    private IEnumerator FlashPlayer(float duration, float interval)
+    {
+        float elapsedTime = 0f;
+        bool isVisible = true;
+
+        while (elapsedTime < duration)
+        {
+            spriteRenderer.enabled = isVisible;
+            yield return new WaitForSeconds(interval);
+            isVisible = !isVisible;
+            elapsedTime += interval;
+        }
+
+        spriteRenderer.enabled = true; // Ensure sprite is visible after flashing
+    }
 
     // Returns whether the damageable took damage or not
     public bool Hit(int damage, Vector2 knockback) // Function to handle when the damageable entity is hit
     {
         if (IsAlive && !isInvincible)
         {
-        
-            MakePlayerTransparent(0.5f, 0.5f);
+            StartCoroutine(FlashPlayer(0.5f, 0.1f)); // Flash effect
+            
+            //MakePlayerTransparent(0.5f, 0.5f); //Original Code: make player opacity
 
             // Reduce health by damage amount
             Health -= damage;

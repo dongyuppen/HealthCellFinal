@@ -20,9 +20,9 @@ public class EnemyDamageable : MonoBehaviour
 
 
     public GameObject itemPrefab;  // pickup item Prefab
-    public GameObject coinPrefab; // oin Prefab
+    public GameObject coinPrefab; // Coin Prefab
 
-
+    
     [SerializeField]
     private int _maxHealth = 100;
 

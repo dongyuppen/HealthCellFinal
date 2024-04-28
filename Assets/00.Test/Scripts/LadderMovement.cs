@@ -39,6 +39,7 @@ public class LadderMovement : MonoBehaviour
         {
             cd.isTrigger = true;
             rb.gravityScale = 0f;
+            rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
             rb.velocity = new Vector2(rb.velocity.x, vertical * climbspeed);
         }
         else if(touchingDirections.IsGrounded)
@@ -50,6 +51,7 @@ public class LadderMovement : MonoBehaviour
         {
             rb.gravityScale = 2f;
             cd.isTrigger = false;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
     }
 

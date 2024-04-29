@@ -69,6 +69,8 @@ public class Damageable : MonoBehaviour
     {
         yield return new WaitForSeconds(time); 
          SceneManager.LoadScene("DieScene"); 
+         
+
 
     }
 

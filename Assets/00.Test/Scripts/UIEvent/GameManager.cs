@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement; // 이걸 써야 씬 전환 가능한 코드 사용가능
 using TMPro;
 using System.Xml.Serialization;
+using JetBrains.Annotations;
 
 public class GameManager : MonoBehaviour
 {
@@ -97,6 +98,8 @@ public class GameManager : MonoBehaviour
     public void ProgressiveOverload ()  //점진적 과부화 (죽으면 다시 살아남)
     {
          SceneManager.LoadScene("TestScene0428_1630"); 
+        int _coin = CoinManager.coins;
+         
          
     }
 }

@@ -13,6 +13,8 @@ public class InventoryUI : MonoBehaviour
 
     public Slot[] slots; // Array to hold references to all slots in the inventory UI
     public Transform slotHolder; // Reference to the parent transform holding all slots
+    public ShopSlot[] shopSlots;
+    public Transform shopHolder;
 
     private void Start()
     {
@@ -20,11 +22,20 @@ public class InventoryUI : MonoBehaviour
         inven = Inventory.instance;
         // Getting references to all slots
         slots = slotHolder.GetComponentsInChildren<Slot>();
+        shopSlots = shopHolder.GetComponentsInChildren<ShopSlot>();
+        for (int i = 0; i < shopSlots.Length; i++)
+        {
+            shopSlots[i].Init(this);
+            shopSlots[i].slotNum = i;
+        }
+
         // Subscribing to events in the Inventory script
         inven.onSlotCountChange += SlotChange;
         inven.onChangeItem += RedrawSlotUI;
+        RedrawSlotUI();
         // Setting the initial state of the inventory panel
         inventoryPanel.SetActive(activeInventory);
+        closeShop.onClick.AddListener(DeActiveShop);
     }
 
     // Method to handle slot count change event
@@ -50,10 +61,15 @@ public class InventoryUI : MonoBehaviour
     private void Update()
     {
         // Toggling the inventory panel visibility when 'I' key is pressed
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I) && !isStoreActive)
         {
             activeInventory = !activeInventory;
             inventoryPanel.SetActive(activeInventory);
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            RayShop();
         }
     }
 
@@ -76,6 +92,73 @@ public class InventoryUI : MonoBehaviour
         {
             slots[i].item = inven.items[i]; // Assigning the item to the slot
             slots[i].UpdateSlotUI(); // Updating the slot UI
+        }
+    }
+
+    public GameObject shop;
+    public Button closeShop;
+    public bool isStoreActive;
+
+    public ShopData shopData;
+    public void RayShop()
+    {
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = -10;
+        if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject(-1)) // Mobile = 0
+        {
+            RaycastHit2D hit2D = Physics2D.Raycast(mousePos, transform.forward, 30);
+            if (hit2D.collider != null)
+            {
+                if (hit2D.collider.CompareTag("Store"))
+                {
+                    if (!isStoreActive)
+                    {
+                        ActiveShop(true);
+                        shopData = hit2D.collider.GetComponent<ShopData>();
+                        for (int i = 0; i < shopData.stocks.Count; i++)
+                        {
+                            shopSlots[i].item = shopData.stocks[i];
+                            shopSlots[i].UpdateSlotUI();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void Buy(int num)
+    {
+        shopData.soldOuts[num] = true;
+    }
+
+    public void ActiveShop(bool isOpen)
+    {
+        if (!activeInventory)
+        {
+            isStoreActive = isOpen;
+            shop.SetActive(isOpen);
+            inventoryPanel.SetActive(isOpen);
+            for (int i = 0; i < slots.Length; i++)
+            {
+                slots[i].isShopMode = isOpen;
+            }
+        }
+    }
+    public void DeActiveShop()
+    {
+        ActiveShop(false);
+        shopData = null;
+        for (int i = 0; i < shopSlots.Length; i++)
+        {
+            shopSlots[i].RemoveSlot();
+        }
+    }
+
+    public void SellBtn()
+    {
+        for (int i = slots.Length; i > 0; i--)
+        {
+            slots[i - 1].SellItem();
         }
     }
 }

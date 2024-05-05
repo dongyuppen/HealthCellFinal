@@ -7,9 +7,16 @@ public class ItemDatabase : MonoBehaviour
     // Static reference to the ItemDatabase instance, ensuring there's only one instance in the game
     public static ItemDatabase instance;
 
+    public int money = 0;
+
     private void Awake()
     {
         instance = this; // Assigning the current instance to the static reference
+    }
+
+    private void Start()
+    {
+        money = 10000;
     }
 
     // List to hold all items in the game

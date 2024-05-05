@@ -10,6 +10,10 @@ public class Slot : MonoBehaviour,IPointerUpHandler
     public Item item; // Item held in the slot
     public Image itemIcon; // Reference to the UI image displaying the item icon
 
+    public bool isShopMode;
+    public bool isSell = false;
+    public GameObject chkSell;
+
     // Method to update the slot UI with the item's icon
     public void UpdateSlotUI()
     {
@@ -27,11 +31,40 @@ public class Slot : MonoBehaviour,IPointerUpHandler
     // Method called when the pointer is released over the slot
     public void OnPointerUp(PointerEventData eventData)
     {
-        // Using the item when the slot is clicked, if successful, remove the item from the inventory
-        bool isUse = item.Use(); // Using the item and storing the result
-        if (isUse)
+        if (item != null)
         {
-            Inventory.instance.RemoveItem(slotNum); // Removing the item from the inventory
+            if (!isShopMode)
+            {
+                // Using the item when the slot is clicked, if successful, remove the item from the inventory
+                bool isUse = item.Use(); // Using the item and storing the result
+                if (isUse)
+                {
+                    Inventory.instance.RemoveItem(slotNum); // Removing the item from the inventory
+                }
+            }
+            else
+            {
+                // Shop
+                isSell = true;
+                chkSell.SetActive(isSell);
+            }
         }
+    }
+
+    public void SellItem()
+    {
+        if(isSell)
+        {
+            ItemDatabase.instance.money += item.itemCost;
+            Inventory.instance.RemoveItem(slotNum);
+            isSell = false;
+            chkSell.SetActive(isSell);
+        }
+    }
+
+    private void OnDisable()
+    {
+        isSell = false;
+        chkSell.SetActive(isSell);
     }
 }

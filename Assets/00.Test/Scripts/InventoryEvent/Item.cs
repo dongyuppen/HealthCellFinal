@@ -16,6 +16,7 @@ public class Item
 {
     public ItemType itemType; // Type of the item
     public string itemName; // Name of the item
+    public int itemCost; // Cost of the item
     public Sprite itemImage; // Image of the item
     public List<ItemEffect> efts; // List of effects associated with the item
 

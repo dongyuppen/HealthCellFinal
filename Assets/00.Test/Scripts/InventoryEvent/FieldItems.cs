@@ -7,6 +7,7 @@ public class FieldItems : MonoBehaviour
     public Item item;
     public SpriteRenderer image;
 
+    // Method to set the item's properties
     public void SetItem(Item _item)
     {
         item.itemName = _item.itemName;
@@ -17,11 +18,13 @@ public class FieldItems : MonoBehaviour
         image.sprite = item.itemImage;
     }
 
+    // Method to retrieve the item
     public Item GetItem()
     {
         return item;
     }
-
+    
+    // Method to destroy the item GameObject
     public void DestoryItem()
     {
         Destroy(gameObject);

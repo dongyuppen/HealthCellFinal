@@ -4,23 +4,20 @@ using UnityEngine;
 
 public class ItemDatabase : MonoBehaviour
 {
+    // Static reference to the ItemDatabase instance, ensuring there's only one instance in the game
     public static ItemDatabase instance;
 
     private void Awake()
     {
-        instance = this;
+        instance = this; // Assigning the current instance to the static reference
     }
+
+    // List to hold all items in the game
     public List<Item> itemDB = new List<Item>();
 
+    // Prefab for the field items in the game world
     public GameObject fieldItemPrefab;
-    public Vector3[] pos;
 
-    /*private void Start()
-    {
-        for (int i = 0; i<5; i++)
-        {
-            GameObject go = Instantiate(fieldItemPrefab, pos[i], Quaternion.identity);
-            go.GetComponent<FieldItems>().SetItem(itemDB[Random.Range(0, 3)]);
-        }
-    } */
+    // Array to hold positions for spawning field items
+    public Vector3[] pos;
 }

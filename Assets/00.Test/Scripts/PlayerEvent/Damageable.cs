@@ -59,6 +59,7 @@ public class Damageable : MonoBehaviour
             // If health drops below 0, character is no longer alive
             if (_health <= 0)
             {
+                UpdatePlayerDataAfterDead();
                 IsAlive = false;
                  StartCoroutine(Die(2));
                  
@@ -170,6 +171,15 @@ public class Damageable : MonoBehaviour
         else
         {
             Debug.LogWarning("Player data is not assigned to Damageable!");
+        }
+    }
+
+    private void UpdatePlayerDataAfterDead()
+    {
+        if (playerData != null)
+        {
+            playerData.level = level;
+            playerData.maxHealth = _maxHealth;
         }
     }
 

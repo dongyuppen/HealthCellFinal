@@ -9,6 +9,8 @@ TagManager:
   - Boss
   - Enemy
   - BreakTile
+  - Store
+  - FieldItem
   layers:
   - Default
   - TransparentFX

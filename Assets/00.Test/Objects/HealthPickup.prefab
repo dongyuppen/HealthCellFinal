@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 150371451155301006}
   - component: {fileID: 3866755577719105579}
   - component: {fileID: 1789812102298329741}
+  - component: {fileID: 4114342405537496918}
   m_Layer: 12
   m_Name: HealthPickup
   m_TagString: Untagged
@@ -99,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthRestore: 20
+  spinRotationSpeed: {x: 0, y: 180, z: 0}
 --- !u!58 &1789812102298329741
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -134,3 +136,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &4114342405537496918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4648046248255741443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63feadfd6bd7ea740b0aed6f1f0c03df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item:
+    itemType: 1
+    itemName: smallPotion
+    itemImage: {fileID: 21300000, guid: b2834b9a4be626e4d8a56e1cde70b1b1, type: 3}
+    efts:
+    - {fileID: 11400000, guid: 7f43b693461258045b30137f45177d3f, type: 2}
+  image: {fileID: 150371451155301006}

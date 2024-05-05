@@ -264,4 +264,9 @@ public class Damageable : MonoBehaviour
 
         return false;
     }
+
+    public void IncreaseMaxHealth(int amount)
+    {
+        _maxHealth += amount;
+    }
 }

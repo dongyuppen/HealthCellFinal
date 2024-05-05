@@ -13,8 +13,8 @@ public class InventoryUI : MonoBehaviour
 
     public Slot[] slots; // Array to hold references to all slots in the inventory UI
     public Transform slotHolder; // Reference to the parent transform holding all slots
-    public ShopSlot[] shopSlots;
-    public Transform shopHolder;
+    public ShopSlot[] shopSlots; // Array to hold references to all shop slots in the shop UI
+    public Transform shopHolder; // Reference to the parent transform holding all shop slots
 
     private void Start()
     {
@@ -22,7 +22,10 @@ public class InventoryUI : MonoBehaviour
         inven = Inventory.instance;
         // Getting references to all slots
         slots = slotHolder.GetComponentsInChildren<Slot>();
+        // Getting references to all shop slots
         shopSlots = shopHolder.GetComponentsInChildren<ShopSlot>();
+
+        // Initializing shop slots
         for (int i = 0; i < shopSlots.Length; i++)
         {
             shopSlots[i].Init(this);
@@ -35,6 +38,7 @@ public class InventoryUI : MonoBehaviour
         RedrawSlotUI();
         // Setting the initial state of the inventory panel
         inventoryPanel.SetActive(activeInventory);
+        // Adding a listener to the close shop button
         closeShop.onClick.AddListener(DeActiveShop);
     }
 
@@ -67,6 +71,7 @@ public class InventoryUI : MonoBehaviour
             inventoryPanel.SetActive(activeInventory);
         }
 
+        // Checking for mouse button up to raycast for shop
         if (Input.GetMouseButtonUp(0))
         {
             RayShop();
@@ -95,11 +100,13 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    public GameObject shop;
-    public Button closeShop;
-    public bool isStoreActive;
+    public GameObject shop; // Reference to the shop UI GameObject
+    public Button closeShop; // Reference to the close button for the shop
+    public bool isStoreActive; // Flag to track if the shop is currently active
 
-    public ShopData shopData;
+    public ShopData shopData; // Reference to the data for the current shop
+
+    // Method to raycast and check if the mouse hits the shop
     public void RayShop()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -113,8 +120,9 @@ public class InventoryUI : MonoBehaviour
                 {
                     if (!isStoreActive)
                     {
-                        ActiveShop(true);
-                        shopData = hit2D.collider.GetComponent<ShopData>();
+                        ActiveShop(true); // Opening the shop UI
+                        shopData = hit2D.collider.GetComponent<ShopData>(); // Getting shop data
+                        // Updating shop slots with available stocks
                         for (int i = 0; i < shopData.stocks.Count; i++)
                         {
                             shopSlots[i].item = shopData.stocks[i];
@@ -126,39 +134,46 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
+    // Method to handle buying an item from the shop
     public void Buy(int num)
     {
-        shopData.soldOuts[num] = true;
+        shopData.soldOuts[num] = true; // Marking the item as sold out in the shop data
     }
 
+    // Method to activate or deactivate the shop UI
     public void ActiveShop(bool isOpen)
     {
         if (!activeInventory)
         {
-            isStoreActive = isOpen;
-            shop.SetActive(isOpen);
-            inventoryPanel.SetActive(isOpen);
+            isStoreActive = isOpen; // Updating the shop active flag
+            shop.SetActive(isOpen); // Activating or deactivating the shop UI
+            inventoryPanel.SetActive(isOpen); // Activating or deactivating the inventory panel
+            // Setting the shop mode for all slots
             for (int i = 0; i < slots.Length; i++)
             {
                 slots[i].isShopMode = isOpen;
             }
         }
     }
+
+    // Method to deactivate the shop UI
     public void DeActiveShop()
     {
-        ActiveShop(false);
-        shopData = null;
+        ActiveShop(false); // Deactivating the shop
+        shopData = null; // Clearing shop data
+        // Removing all items from shop slots
         for (int i = 0; i < shopSlots.Length; i++)
         {
             shopSlots[i].RemoveSlot();
         }
     }
 
+    // Method to handle selling all items in the inventory
     public void SellBtn()
     {
         for (int i = slots.Length; i > 0; i--)
         {
-            slots[i - 1].SellItem();
+            slots[i - 1].SellItem(); // Selling each item in the inventory
         }
     }
 }

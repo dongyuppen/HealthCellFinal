@@ -10,9 +10,9 @@ public class Slot : MonoBehaviour,IPointerUpHandler
     public Item item; // Item held in the slot
     public Image itemIcon; // Reference to the UI image displaying the item icon
 
-    public bool isShopMode;
-    public bool isSell = false;
-    public GameObject chkSell;
+    public bool isShopMode; // Flag to indicate whether the slot is in shop mode
+    public bool isSell = false; // Flag to indicate whether the item is marked for selling
+    public GameObject chkSell; // Reference to the UI GameObject indicating the item is marked for selling
 
     // Method to update the slot UI with the item's icon
     public void UpdateSlotUI()
@@ -45,26 +45,30 @@ public class Slot : MonoBehaviour,IPointerUpHandler
             else
             {
                 // Shop
-                isSell = true;
-                chkSell.SetActive(isSell);
+                isSell = true; // Marking the item for selling
+                chkSell.SetActive(isSell); // Activating the UI indicator for selling
             }
         }
     }
 
+    // Method to sell the item
     public void SellItem()
     {
         if(isSell)
         {
+            // Adding money for selling the item
             ItemDatabase.instance.money += item.itemCost;
+            // Removing the item from the inventory
             Inventory.instance.RemoveItem(slotNum);
-            isSell = false;
-            chkSell.SetActive(isSell);
+            isSell = false; // Resetting the selling flag
+            chkSell.SetActive(isSell); // Deactivating the UI indicator for selling
         }
     }
 
+    // Method called when the GameObject is disabled
     private void OnDisable()
     {
-        isSell = false;
-        chkSell.SetActive(isSell);
+        isSell = false; // Resetting the selling flag
+        chkSell.SetActive(isSell); // Deactivating the UI indicator for selling
     }
 }

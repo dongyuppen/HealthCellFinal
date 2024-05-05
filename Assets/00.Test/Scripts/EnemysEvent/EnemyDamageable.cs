@@ -26,7 +26,9 @@ public class EnemyDamageable : MonoBehaviour
     public GameObject itemPrefab;  // pickup item Prefab
     public GameObject coinPrefab; // Coin Prefab
 
-    
+    private SpriteRenderer spriteRenderer;
+
+
     [SerializeField]
     private int _maxHealth = 100;
 
@@ -141,6 +143,11 @@ public class EnemyDamageable : MonoBehaviour
         InitializeHealthFromMonsterData();
     }
 
+    private void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
     private void Update()
     {
         // Update invincibility state(timer)
@@ -182,11 +189,29 @@ public class EnemyDamageable : MonoBehaviour
         }
     }
 
+    private IEnumerator FlashEnemy(float duration, float interval)
+    {
+        float elapsedTime = 0f;
+        bool isVisible = true;
+
+        while (elapsedTime < duration)
+        {
+            spriteRenderer.enabled = isVisible;
+            yield return new WaitForSeconds(interval);
+            isVisible = !isVisible;
+            elapsedTime += interval;
+        }
+
+        spriteRenderer.enabled = true; // Ensure sprite is visible after flashing
+    }
+
     // Returns whether the damageable took damage or not
     public bool Hit(int damage, Vector2 knockback) // Function to handle when the damageable entity is hit
     {
         if (IsAlive && !isInvincible)
         {
+            StartCoroutine(FlashEnemy(invincibilityTime, 0.1f)); // Flash effect
+
             // Reduce health by damage amount
             Health -= damage;
             

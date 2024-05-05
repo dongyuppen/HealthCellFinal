@@ -23,7 +23,7 @@ public class Damageable : MonoBehaviour
     Animator animator;
 
     
-    private Color originalColor;
+    //private Color originalColor;
     private SpriteRenderer spriteRenderer;
 
     [SerializeField]
@@ -129,7 +129,7 @@ public class Damageable : MonoBehaviour
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        originalColor = spriteRenderer.color;
+        //originalColor = spriteRenderer.color;
     }
 
     private void Update()
@@ -213,7 +213,7 @@ public class Damageable : MonoBehaviour
     {
         if (IsAlive && !isInvincible)
         {
-            StartCoroutine(FlashPlayer(0.5f, 0.1f)); // Flash effect
+            StartCoroutine(FlashPlayer(invincibilityTime, 0.1f)); // Flash effect
             
             //MakePlayerTransparent(0.5f, 0.5f); //Original Code: make player opacity
 

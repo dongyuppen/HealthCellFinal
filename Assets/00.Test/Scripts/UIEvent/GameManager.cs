@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
 
     public void ProgressiveOverload ()  //점진적 과부화 (죽으면 다시 살아남)
     {
-         SceneManager.LoadScene("TestScene0428_1630"); 
+         SceneManager.LoadScene("TestScene0505_2130"); 
         int _coin = CoinManager.coins;
          
          

@@ -15,8 +15,14 @@ EditorBuildSettings:
     path: Assets/00.Test/Scenes/CtlScene.unity
     guid: b355b4e2f5fe74539b5f932c250742ba
   - enabled: 1
-    path: Assets/00.Test/Scenes/TestScene0505_2130.unity
-    guid: 9e6f88d3819628b4c996fb631090c0f6
+    path: Assets/30.SSW/01.Scenes/StoryScene.unity
+    guid: df33fdbc3a140498192f1b70bc4027c7
+  - enabled: 1
+    path: Assets/30.SSW/01.Scenes/DreamScene.unity
+    guid: 0192fabe4525a4f95ae6ae54c84ff0bc
+  - enabled: 1
+    path: Assets/00.Test/Scenes/TestScene0510_2100.unity
+    guid: d581d17c1474d4a058a12a959d6c75ce
   - enabled: 1
     path: Assets/00.Test/Scenes/DieScene.unity
     guid: d3a86c869e75749bc80b27db94cb6ac5

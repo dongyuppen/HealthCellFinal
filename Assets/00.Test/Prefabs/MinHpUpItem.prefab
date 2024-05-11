@@ -136,7 +136,7 @@ MonoBehaviour:
   item:
     itemType: 1
     itemName: MinMaxHpUP
-    itemCost: 2000
+    itemCost: 1000
     itemImage: {fileID: 21300000, guid: 5c052fbdb2f7605439f4043a57ed39a1, type: 3}
     efts:
     - {fileID: 11400000, guid: 7f43b693461258045b30137f45177d3f, type: 2}

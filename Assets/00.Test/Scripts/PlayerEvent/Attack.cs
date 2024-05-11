@@ -114,4 +114,9 @@ public class Attack : MonoBehaviour
             }
         }
     }
+
+    public void IncreaseAttackDamage(int amount)
+    {
+        attackDamage += amount;
+    }
 }

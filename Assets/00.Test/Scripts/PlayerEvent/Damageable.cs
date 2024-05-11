@@ -273,4 +273,17 @@ public class Damageable : MonoBehaviour
     {
         _maxHealth += amount;
     }
+
+    public void IncreasePlayerAttackDamage(int increaseAmount)
+    {
+        Attack playerAttack = GetComponentInChildren<Attack>();
+        if (playerAttack != null)
+        {
+            playerAttack.IncreaseAttackDamage(increaseAmount);
+        }
+        else
+        {
+            Debug.LogWarning("Attack script not found in children of player object!");
+        }
+    }
 }

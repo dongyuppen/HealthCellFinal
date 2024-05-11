@@ -174,12 +174,16 @@ public class Damageable : MonoBehaviour
         }
     }
 
+    
+
     private void UpdatePlayerDataAfterDead()
     {
         if (playerData != null)
         {
             playerData.level = level;
             playerData.maxHealth = _maxHealth;
+            // Update player's attack damage in player data
+            playerData.attackDamage1 = GetComponentInChildren<Attack>().attackDamage;
         }
     }
 

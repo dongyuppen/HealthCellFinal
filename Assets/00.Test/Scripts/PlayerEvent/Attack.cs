@@ -18,7 +18,8 @@ public class Attack : MonoBehaviour
     private void Awake()
     {
         InitializeLevelFromPlayerData();
-        InitializeAttackDamageFromPlayerData();
+        //InitializeAttackDamageFromPlayerData();
+        InitializeAttackdamageFromPlayerData();
     }
 
     private void InitializeLevelFromPlayerData()
@@ -32,6 +33,8 @@ public class Attack : MonoBehaviour
             Debug.LogWarning("Player data is not assigned to Attack!");
         }
     }
+
+    // Individual attackDamage Setting
     private void InitializeAttackDamageFromPlayerData()
     {
         if (playerData != null && gameObject.name == "SwordAttack1")
@@ -55,6 +58,36 @@ public class Attack : MonoBehaviour
             attackDamage = playerData.airAttackDamage2;
         }
         
+        else
+        {
+            Debug.LogWarning("PlayerData is not assigned to Attack!");
+        }
+    }
+
+    // Integrated attackDamage Setting
+    private void InitializeAttackdamageFromPlayerData()
+    {
+        if (playerData != null && gameObject.name == "SwordAttack1")
+        {
+            attackDamage = playerData.attackDamage1;
+        }
+        else if ((playerData != null && gameObject.name == "SwordAttack2"))
+        {
+            attackDamage = playerData.attackDamage1 + 5;
+        }
+        else if ((playerData != null && gameObject.name == "SwordAttack3"))
+        {
+            attackDamage = playerData.attackDamage1 + 10;
+        }
+        else if ((playerData != null && gameObject.name == "AirAttack1"))
+        {
+            attackDamage = playerData.attackDamage1 + 3;
+        }
+        else if ((playerData != null && gameObject.name == "AirAttack2"))
+        {
+            attackDamage = playerData.attackDamage1 + 5;
+        }
+
         else
         {
             Debug.LogWarning("PlayerData is not assigned to Attack!");

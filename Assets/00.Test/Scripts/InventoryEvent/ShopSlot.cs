@@ -48,6 +48,8 @@ public class ShopSlot : MonoBehaviour,IPointerUpHandler
                 soldOut = true;
                 inventoryUI.Buy(slotNum);
                 UpdateSlotUI();
+
+                CoinManager.instance.ChangeCoins(-item.itemCost); // Update Coin UI
             }
         }
     }

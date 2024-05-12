@@ -133,5 +133,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31daafb93f6502a49a3476e656b8445b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 1
+  value: 500
   spinRotationSpeed: {x: 0, y: 180, z: 0}

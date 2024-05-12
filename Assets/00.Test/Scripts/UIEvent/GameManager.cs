@@ -92,14 +92,12 @@ public class GameManager : MonoBehaviour
     }
     public void Exit()
     {
-        Application.Quit();  //게임 종료
+        Application.Quit();  //GameOver
     }
 
-    public void ProgressiveOverload ()  //점진적 과부화 (죽으면 다시 살아남)
+    public void ProgressiveOverload ()  // Revive
     {
-         SceneManager.LoadScene("TestScene0505_2130"); 
-        int _coin = CoinManager.coins;
-         
-         
+        SceneManager.LoadScene("TestScene0505_2130");
+        int coin = CoinManager.instance.coins;
     }
 }

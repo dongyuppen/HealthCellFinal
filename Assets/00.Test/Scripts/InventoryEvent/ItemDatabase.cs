@@ -17,6 +17,8 @@ public class ItemDatabase : MonoBehaviour
     private void Start()
     {
         money = 10000;
+        CoinManager.instance.coins = money;
+        CoinManager.instance.UpdateCoinsDisplay();
     }
 
     // List to hold all items in the game

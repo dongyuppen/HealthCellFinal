@@ -210,7 +210,7 @@ MonoBehaviour:
   level: 0
   playerData: {fileID: 11400000, guid: c70cd8219879f4e4bb6392a907ed412d, type: 2}
   attackDamage: 15
-  knockback: {x: 1, y: 0}
+  knockback: {x: 0, y: 0}
 --- !u!1 &1954148848460138665
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,7 +311,7 @@ MonoBehaviour:
   level: 0
   playerData: {fileID: 11400000, guid: c70cd8219879f4e4bb6392a907ed412d, type: 2}
   attackDamage: 10
-  knockback: {x: 1, y: 0}
+  knockback: {x: 0, y: 0}
 --- !u!1 &3901624260585253764
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,6 +911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2910b009ec9740a429895eebb576d47e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
 --- !u!1 &8912279813853507422
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,7 +1017,7 @@ MonoBehaviour:
   level: 0
   playerData: {fileID: 11400000, guid: c70cd8219879f4e4bb6392a907ed412d, type: 2}
   attackDamage: 25
-  knockback: {x: 5, y: 0}
+  knockback: {x: 0, y: 0}
 --- !u!1 &9010068081284270872
 GameObject:
   m_ObjectHideFlags: 0

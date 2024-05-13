@@ -72,11 +72,12 @@ public TMP_Text tutorialTxt;
         talkNum = 0;
         Debug.Log("자막 끝!"); 
 
-        IEnumerator loadScene() 
-    {
-        yield return new WaitForSeconds(5.0f);
-        SceneManager.LoadScene("TestScene0510_2100");
+        Invoke("LoadScene", 6.5f);
     }
+
+       public void LoadScene()  
+    {
+        SceneManager.LoadScene("TestScene0512_1500");
     }
      
 

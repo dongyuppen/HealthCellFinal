@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
 
     public void ProgressiveOverload ()  // Revive
     {
-        SceneManager.LoadScene("TestScene0505_2130");
+        SceneManager.LoadScene("TestScene0512_1500");
         int coin = CoinManager.instance.coins;
     }
 }

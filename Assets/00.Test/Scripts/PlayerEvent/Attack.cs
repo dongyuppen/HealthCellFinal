@@ -18,8 +18,8 @@ public class Attack : MonoBehaviour
     private void Awake()
     {
         InitializeLevelFromPlayerData();
-        //InitializeAttackDamageFromPlayerData();
-        InitializeAttackdamageFromPlayerData();
+        InitializeAttackDamageFromPlayerData();
+        //InitializeAttackdamageFromPlayerData();
     }
 
     private void InitializeLevelFromPlayerData()
@@ -43,18 +43,22 @@ public class Attack : MonoBehaviour
         }
         else if((playerData != null && gameObject.name == "SwordAttack2"))
         {
+            playerData.attackDamage2 = playerData.attackDamage1 + 5;
             attackDamage = playerData.attackDamage2;
         }
         else if ((playerData != null && gameObject.name == "SwordAttack3"))
         {
+            playerData.attackDamage3 = playerData.attackDamage1 + 10;
             attackDamage = playerData.attackDamage3;
         }
         else if ((playerData != null && gameObject.name == "AirAttack1"))
         {
+            playerData.airAttackDamage1 = playerData.attackDamage1 + 3;
             attackDamage = playerData.airAttackDamage1;
         }
         else if ((playerData != null && gameObject.name == "AirAttack2"))
         {
+            playerData.airAttackDamage2 = playerData.attackDamage1 + 5;
             attackDamage = playerData.airAttackDamage2;
         }
         
@@ -94,6 +98,7 @@ public class Attack : MonoBehaviour
         }
     }
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Check if the collided object can be damaged
@@ -118,5 +123,11 @@ public class Attack : MonoBehaviour
     public void IncreaseAttackDamage(int amount)
     {
         attackDamage += amount;
+
+        GameObject.Find("SwordAttack1").GetComponent<Attack>().attackDamage = attackDamage;
+        GameObject.Find("SwordAttack2").GetComponent<Attack>().attackDamage = attackDamage + 5;
+        GameObject.Find("SwordAttack3").GetComponent<Attack>().attackDamage = attackDamage + 10;
+        GameObject.Find("AirAttack1").GetComponent<Attack>().attackDamage = attackDamage + 3;
+        GameObject.Find("AirAttack2").GetComponent<Attack>().attackDamage = attackDamage + 5;
     }
 }

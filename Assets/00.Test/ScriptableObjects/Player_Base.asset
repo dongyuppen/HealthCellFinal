@@ -15,7 +15,7 @@ MonoBehaviour:
   level: 1
   attackDamage1: 10
   attackDamage2: 15
-  attackDamage3: 25
-  airAttackDamage1: 12
-  airAttackDamage2: 18
+  attackDamage3: 20
+  airAttackDamage1: 13
+  airAttackDamage2: 15
   maxHealth: 100

@@ -2,9 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.Processors;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Potal : MonoBehaviour
 {
+    public Image fadePanel;
+    float time = 0f;
+    float Fadetime = 1f;
     public static Potal Instance // singlton >> singlton call other script function
     {
         get
@@ -28,10 +34,36 @@ public class Potal : MonoBehaviour
     {
         if (collision.CompareTag("Potal"))
         {
-            Debug.Log("부딪혔습니다.");
-            // StageMgr 컴포넌트의 NextStage 함수 호출
-            StageMgr.Instance.NextStage();
-            //GetComponent<StageMgr>().NextStage();
+            StartCoroutine(FadeOutIn());
         }
+    }
+    IEnumerator FadeOutIn()
+    {
+        fadePanel.gameObject.SetActive(true);
+        Color alpha = fadePanel.color;
+        while(alpha.a < 1f)
+        {
+            time += Time.deltaTime / Fadetime;
+            alpha.a = Mathf.Lerp(0, 1, time);
+            fadePanel.color = alpha;
+            yield return null;
+        }
+        time = 0f;
+        Debug.Log("2번처리완료");
+
+        StageMgr.Instance.NextStage();
+        // StageMgr 컴포넌트의 NextStage 함수 호출
+        yield return new WaitForSeconds(1f);
+
+        while (alpha.a > 0f)
+        {
+            time += Time.deltaTime / Fadetime;
+            alpha.a = Mathf.Lerp(1, 0, time);
+            fadePanel.color = alpha;
+            yield return null;
+        }
+        fadePanel.gameObject.SetActive(false);
+        Debug.Log("3번처리완료");
+        yield return null;
     }
 }

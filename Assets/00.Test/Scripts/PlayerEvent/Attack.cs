@@ -11,6 +11,8 @@ public class Attack : MonoBehaviour
 
     // Damage inflicted by the attack
     public int attackDamage = 10;
+
+    
     // Knockback force applied to the target
     public Vector2 knockback = Vector2.zero;
 

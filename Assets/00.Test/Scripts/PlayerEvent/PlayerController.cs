@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private float dashingTime = 0.2f; 
     private float dashingCooldown = 1f;
 
+
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private TrailRenderer tr;

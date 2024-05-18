@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class StageMgr : MonoBehaviour
 {
     public static StageMgr Instance // singlton     
@@ -34,8 +35,8 @@ public class StageMgr : MonoBehaviour
     public StartPositionArray[] startPositionArrays; // 0.1.2
 
 
-    //startPosition[0] -> 1~10 stage ´ã´ç
-    //startPosition[1] -> 11~20 stage ´ã´ç ÇÏ´Â ½ÄÀ¸·Î °¡´É.
+    //startPosition[0] -> 1~10 stage ï¿½ï¿½ï¿½
+    //startPosition[1] -> 11~20 stage ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 
     //int LastStage = 9;
 

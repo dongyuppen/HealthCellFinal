@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    public int level;
-
     // Reference to the ScriptableObject containing player's data
     public SOPlayer playerData;
 
@@ -19,22 +17,11 @@ public class Attack : MonoBehaviour
 
     private void Awake()
     {
-        InitializeLevelFromPlayerData();
         InitializeAttackDamageFromPlayerData();
         //InitializeAttackdamageFromPlayerData();
     }
 
-    private void InitializeLevelFromPlayerData()
-    {
-        if (playerData != null)
-        {
-            level = playerData.level;
-        }
-        else
-        {
-            Debug.LogWarning("Player data is not assigned to Attack!");
-        }
-    }
+    
 
     // Individual attackDamage Setting
     private void InitializeAttackDamageFromPlayerData()

@@ -18,4 +18,5 @@ MonoBehaviour:
   attackDamage3: 20
   airAttackDamage1: 13
   airAttackDamage2: 15
+  attackSpeed: 1
   maxHealth: 100

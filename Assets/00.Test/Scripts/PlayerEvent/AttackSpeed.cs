@@ -4,23 +4,47 @@ using UnityEngine;
 
 public class AttackSpeed : MonoBehaviour
 {
-    Animator animator;
+    public Animator animator;
     
-    public float atkSeed = 1;
+    public float atkSpeed = 1;
+
+    public SOPlayer playerData;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        InitializeAtkSpeedFromPlayerData();
+    }
+
+    private void Start()
+    {
+        SetAttackSpeed(atkSpeed);
     }
 
     private void Update()
     {
-        SetAttackSpeed(atkSeed);
+        // attackSpeed animation Update
+        if (playerData != null && playerData.attackSpeed != atkSpeed)
+        {
+            SetAttackSpeed(atkSpeed);
+        }
     }
 
     public void SetAttackSpeed(float speed)
     {
         animator.SetFloat("attackSpeed", speed);
-        atkSeed = speed;
+        atkSpeed = speed;
+    }
+
+    private void InitializeAtkSpeedFromPlayerData()
+    {
+        if (playerData != null)
+        {
+            atkSpeed = playerData.attackSpeed;
+        }
+        else
+        {
+            Debug.LogWarning("Player data is not assigned to AttackSpeed!");
+        }
     }
 }

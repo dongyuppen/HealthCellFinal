@@ -14,6 +14,8 @@ public class Damageable : MonoBehaviour
     // Reference to the ScriptableObject containing player's data
     public SOPlayer playerData;
 
+    public AttackSpeed attackSpeed;
+
 
     // Event for when the damageble object is hit, includes damage amount and knockback direction
     public UnityEvent<int, Vector2> damageableHit;
@@ -180,10 +182,17 @@ public class Damageable : MonoBehaviour
     {
         if (playerData != null)
         {
+            // Update player's level in player data after Dead
             playerData.level = level;
+
+            // Update player's maxHealth in player data after Dead
             playerData.maxHealth = _maxHealth;
-            // Update player's attack damage in player data
+
+            // Update player's attack damage in player data after Dead
             playerData.attackDamage1 = GetComponentInChildren<Attack>().attackDamage;
+
+            // Update player's attack speed in player data after Dead
+            playerData.attackSpeed = GetComponent<AttackSpeed>().atkSpeed;
         }
     }
 

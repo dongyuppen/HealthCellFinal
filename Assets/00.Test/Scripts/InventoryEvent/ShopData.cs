@@ -14,15 +14,17 @@ public class ShopData : MonoBehaviour
         stocks.Add(ItemDatabase.instance.itemDB[1]);
         stocks.Add(ItemDatabase.instance.itemDB[2]);
         stocks.Add(ItemDatabase.instance.itemDB[3]);
+        stocks.Add(ItemDatabase.instance.itemDB[4]);
+        stocks.Add(ItemDatabase.instance.itemDB[5]);
         // If you want to add an item, uncomment it below.
-        //stocks.Add(ItemDatabase.instance.itemDB[4]);
-        //stocks.Add(ItemDatabase.instance.itemDB[5]);
         //stocks.Add(ItemDatabase.instance.itemDB[6]);
+        //stocks.Add(ItemDatabase.instance.itemDB[7]);
+        //stocks.Add(ItemDatabase.instance.itemDB[8]);
+        //stocks.Add(ItemDatabase.instance.itemDB[9]);
         soldOuts = new bool[stocks.Count];
         for (int i = 0; i < soldOuts.Length; i++)
         {
             soldOuts[i] = false;
         }
     }
-
 }

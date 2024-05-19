@@ -47,4 +47,9 @@ public class AttackSpeed : MonoBehaviour
             Debug.LogWarning("Player data is not assigned to AttackSpeed!");
         }
     }
+
+    public void IncreaseAttackSpeed(float amount)
+    {
+        atkSpeed += amount;
+    }
 }

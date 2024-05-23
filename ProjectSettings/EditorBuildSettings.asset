@@ -21,8 +21,8 @@ EditorBuildSettings:
     path: Assets/00.Test/Scenes/DreamScene.unity
     guid: 0192fabe4525a4f95ae6ae54c84ff0bc
   - enabled: 1
-    path: Assets/00.Test/Scenes/TestScene0512_1500.unity
-    guid: f0c0bd1ec5fd5f4428ab87f7a03036af
+    path: Assets/00.Test/Scenes/TestScene0523_1843.unity
+    guid: 2038b2f1f980f4bf180d4e3050e3f8d1
   - enabled: 1
     path: Assets/00.Test/Scenes/DieScene.unity
     guid: d3a86c869e75749bc80b27db94cb6ac5

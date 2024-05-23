@@ -77,7 +77,7 @@ public TMP_Text tutorialTxt;
 
        public void LoadScene()  
     {
-        SceneManager.LoadScene("TestScene0512_1500");
+        SceneManager.LoadScene("TestScene0519_1440");
     }
      
 

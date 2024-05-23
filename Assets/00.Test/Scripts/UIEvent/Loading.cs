@@ -21,7 +21,7 @@ public class Loading : MonoBehaviour
     }
 
     // Update is called once per frame
-    void GoIntroScene()
+   public void GoIntroScene()
     {
         SceneManager.LoadScene("IntroScene");
     }

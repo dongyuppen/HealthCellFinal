@@ -63,6 +63,7 @@ public class EnemyDamageable : MonoBehaviour
             if (_health <= 0)
             {
                 IsAlive = false;
+                AudioManager.instance.PlaySfx(AudioManager.sfx.MonsterDie);
             }
         }
     }
@@ -214,6 +215,8 @@ public class EnemyDamageable : MonoBehaviour
 
             // Reduce health by damage amount
             Health -= damage;
+
+            AudioManager.instance.PlaySfx(AudioManager.sfx.damage);
             
             isInvincible = true; // Set invincibility
 
@@ -225,6 +228,8 @@ public class EnemyDamageable : MonoBehaviour
 
             return true;
         }
+        
+        
         // Unable to be hit
         return false;
     }

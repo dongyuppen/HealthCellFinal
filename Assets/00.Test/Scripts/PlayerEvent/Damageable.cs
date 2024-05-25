@@ -70,13 +70,12 @@ public class Damageable : MonoBehaviour
     }
     IEnumerator Die(float time)
     {
+        AudioManager.instance.PlaySfx(AudioManager.sfx.fail);
         yield return new WaitForSeconds(time); 
-         SceneManager.LoadScene("DieScene"); 
-         
-
+        SceneManager.LoadScene("DieScene");
 
     }
-
+ 
 
 
     
@@ -242,6 +241,7 @@ public class Damageable : MonoBehaviour
 
             // Reduce health by damage amount
             Health -= damage;
+            AudioManager.instance.PlaySfx(AudioManager.sfx.hit);
             
             isInvincible = true; // Set invincibility
 

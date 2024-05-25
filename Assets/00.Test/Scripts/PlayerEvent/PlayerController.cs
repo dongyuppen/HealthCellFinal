@@ -243,6 +243,7 @@ public class PlayerController : MonoBehaviour
         {
             // Start running
             IsRunning = true;
+            AudioManager.instance.PlaySfx(AudioManager.sfx.run);
         }
         else if (context.canceled)
         {
@@ -260,6 +261,7 @@ public class PlayerController : MonoBehaviour
             // Trigger the jump animation and apply jump impulse
             animator.SetTrigger(AnimationsStrings.jumpTrigger);
             rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
+            AudioManager.instance.PlaySfx(AudioManager.sfx.Jump);
         }
     }
 
@@ -270,6 +272,7 @@ public class PlayerController : MonoBehaviour
         damageable.isInvincible = true; 
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
+        AudioManager.instance.PlaySfx(AudioManager.sfx.dash);
         rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
         tr.emitting = true;
         yield return new WaitForSeconds(dashingTime);

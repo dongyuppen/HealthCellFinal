@@ -95,9 +95,18 @@ public class GameManager : MonoBehaviour
         Application.Quit();  //GameOver
     }
 
-    public void ProgressiveOverload ()  // Revive
+
+    public void ProgressiveOverload()
     {
-        SceneManager.LoadScene("TestScene0519_1440");
+
+         Invoke("re", 1f);
+         AudioManager.instance.PlaySfx(AudioManager.sfx.re);
+
+    }
+   
+    public void re ()  // Revive
+    {
+        SceneManager.LoadScene("TestScene0523_1843");
         int coin = CoinManager.instance.coins;
     }
 }

@@ -325,7 +325,6 @@ GameObject:
   - component: {fileID: 2431928435724378880}
   - component: {fileID: 8867509831893326488}
   - component: {fileID: 4437246425602021288}
-  - component: {fileID: 832537342442197670}
   m_Layer: 8
   m_Name: Boss1
   m_TagString: Boss
@@ -581,24 +580,6 @@ MonoBehaviour:
   _isAlive: 1
   isInvincible: 0
   invincibilityTime: 0.25
---- !u!114 &832537342442197670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2628197378436012529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67199319ef2699d4f9a6283ada1c4a69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 7897753560000167841, guid: cd1133f9d94e40f49b8f6f32102bcc36, type: 3}
-  circlePrefab: {fileID: 3555641237511603405, guid: 63b3828768439c44384210cb24d1075b, type: 3}
-  circleRadius: 1
-  damage: 10
-  spawnRadius: 5
-  checkInterval: 0.5
 --- !u!1 &2789537905995004620
 GameObject:
   m_ObjectHideFlags: 0

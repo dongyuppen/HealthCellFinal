@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
    
     public void re ()  // Revive
     {
-        SceneManager.LoadScene("TestScene0523_1843");
+        SceneManager.LoadScene("TestScene0526_1340");
         int coin = CoinManager.instance.coins;
     }
 }

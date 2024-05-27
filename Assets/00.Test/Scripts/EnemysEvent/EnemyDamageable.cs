@@ -216,7 +216,7 @@ public class EnemyDamageable : MonoBehaviour
             // Reduce health by damage amount
             Health -= damage;
 
-            AudioManager.instance.PlaySfx(AudioManager.sfx.damage);
+            AudioManager.instance.PlaySfx(AudioManager.sfx.mHitI);
             
             isInvincible = true; // Set invincibility
 

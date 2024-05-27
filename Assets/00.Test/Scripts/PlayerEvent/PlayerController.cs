@@ -290,6 +290,7 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started)
         {
+            AudioManager.instance.PlaySfx(AudioManager.sfx.W);
             // Trigger the attack animation
             animator.SetTrigger(AnimationsStrings.attackTrigger);
         }

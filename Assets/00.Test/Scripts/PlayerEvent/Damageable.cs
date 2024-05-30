@@ -72,7 +72,9 @@ public class Damageable : MonoBehaviour
     {
         AudioManager.instance.PlaySfx(AudioManager.sfx.fail);
         yield return new WaitForSeconds(time); 
+        AudioManager.instance.PlayBgm(false);
         SceneManager.LoadScene("DieScene");
+
 
     }
  

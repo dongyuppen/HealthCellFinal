@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
             
         
     }*/
-
+    
     public GameObject go;
    
     public AudioClip theAudio;
@@ -98,15 +98,24 @@ public class GameManager : MonoBehaviour
 
     public void ProgressiveOverload()
     {
-
+        
          Invoke("re", 1f);
          AudioManager.instance.PlaySfx(AudioManager.sfx.re);
+         
 
     }
    
     public void re ()  // Revive
     {
+        
         SceneManager.LoadScene("TestScene0526_1340");
-        int coin = CoinManager.instance.coins;
+        DreamText.isActing =true;
+        
+        
+       // int coin = CoinManager.instance.coins;
+       // int coin = ItemDatabase.instance.money ;
+       //CoinManager.instance.coins = ItemDatabase.instance.money;
+       // CoinManager.instance.UpdateCoinsDisplay();
+       //int _coin = CoinManager.coins;
     }
 }

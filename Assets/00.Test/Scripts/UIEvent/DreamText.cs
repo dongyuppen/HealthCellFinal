@@ -7,6 +7,7 @@ using DG.Tweening;
 using System;
 using System.Xml.Serialization;
 using UnityEngine.SceneManagement;
+using JetBrains.Annotations;
 
 
 public class DreamText : MonoBehaviour
@@ -66,18 +67,23 @@ public TMP_Text tutorialTxt;
         StartCoroutine(Typing(dialogues[talkNum]));
     }
 
+    public static bool isActing = false;
     public void EndTalk()
     {
         //tutoNum 초기화 
         talkNum = 0;
-        Debug.Log("자막 끝!"); 
-
+        Debug.Log("자막 끝!");
+        
         Invoke("LoadScene", 6.5f);
+         isActing = true;
     }
 
        public void LoadScene()  
     {
+       // AudioManager.instance.PlayBgm(true);
         SceneManager.LoadScene("TestScene0526_1340");
+       
+        
     }
      
 

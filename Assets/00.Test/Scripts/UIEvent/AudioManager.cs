@@ -1,8 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Xml.Serialization;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+
 
 public class AudioManager : MonoBehaviour
 {
@@ -11,21 +15,23 @@ public class AudioManager : MonoBehaviour
     [Header("#BGM")]
     public AudioClip bgmClip;
     public float bgmVolume;
-    AudioSource bgmPlayer;
+    public static AudioSource bgmPlayer;
 
     [Header("#SFX")]
     public AudioClip[] sfxClips;
     public float sfxVolume;
     public int channels;
-    AudioSource[] sfxPlayers;
+    public static AudioSource[] sfxPlayers;
     int channelIndex;// 맨 마지막에 실행된 오디오 플레이어
 
-    public enum sfx{damage, damageTwo, fail, hit, hitTwo, MonsterDie, coin, Jump, re, dash, run, mHit, pHit, W, mHitI}
+    public enum sfx{damage, damageTwo, fail, hit, hitTwo, MonsterDie, coin, 
+    Jump, re, dash, run, mHit, pHit, W, mHitI, BGM, Death}
 
     void Awake() 
     {
         instance = this;
         Init();
+            
     }
 
     void Init()
@@ -52,6 +58,20 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    
+    public void PlayBgm(bool isPlay)
+    {
+        if(isPlay)
+        {
+            bgmPlayer.Play();
+        }
+        else 
+        {
+            bgmPlayer.Stop(); 
+        }
+    }
+    
+
     public void PlaySfx(sfx sfx)
     {
         for(int index=0; index < sfxPlayers.Length; index++)
@@ -77,10 +97,24 @@ public class AudioManager : MonoBehaviour
             sfxPlayers[loopIndex].Play();
             break;
         }
-      
+    
     //AudioManager.instance.PlaySfx(AudioManager.sfx.);
     //내가 오디오 쓰고 싶은 곳에 이 코드 작성하면 됌 (함수안에)
     }
+
+   /* public void StopSfx(sfx sfx)
+{
+    for(int index = 0; index < sfxPlayers.Length; index++)
+    {
+        if(sfxPlayers[index].clip == sfxClips[(int)sfx] && sfxPlayers[index].isPlaying)
+        {
+            sfxPlayers[index].Stop();
+            break;
+        }
+    }
+}*/
+
+    
 }
 
 

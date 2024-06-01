@@ -14,8 +14,16 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        // Find the canvas in the scene
-        gameCanvas = FindObjectOfType<Canvas>();
+        // Find the canvas named "GameCanvas" in the scene
+        GameObject canvasObject = GameObject.Find("GameCanvas");
+        if (canvasObject != null)
+        {
+            gameCanvas = canvasObject.GetComponent<Canvas>();
+        }
+        else
+        {
+            Debug.LogError("Canvas named 'GameCanvas' not found in the scene.");
+        }
     }
 
     // OnEnable is called when the object becomes enabled and active

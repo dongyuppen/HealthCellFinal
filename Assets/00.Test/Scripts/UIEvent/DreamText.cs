@@ -39,7 +39,7 @@ public TMP_Text tutorialTxt;
 
     
 
-   GameObject TypingObject = new GameObject("TypingPlayer");
+   //GameObject TypingObject = new GameObject("TypingPlayer");
    IEnumerator Typing (String talk)
    {
     //텍스트를 null 값으로 설정
@@ -110,7 +110,7 @@ public TMP_Text tutorialTxt;
        public void LoadScene()  
     {
        // AudioManager.instance.PlayBgm(true);
-        SceneManager.LoadScene("TestScene0526_1340");
+        SceneManager.LoadScene("TestScene0602_1952");
        
         
     }

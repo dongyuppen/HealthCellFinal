@@ -108,11 +108,19 @@ public class GameManager : MonoBehaviour
     public void re ()  // Revive
     {
         
-        SceneManager.LoadScene("TestScene0526_1340");
+        SceneManager.LoadScene("TestScene0602_1952");
         DreamText.isActing =true;
-        
-        
-       // int coin = CoinManager.instance.coins;
+
+        /*int playerGold = ItemDatabase.instance.money;
+    Debug.Log("Loaded Player Gold: " + playerGold);
+
+    CoinManager.instance.coins = playerGold;
+    CoinManager.instance.UpdateCoinsDisplay();
+
+    Debug.Log("Player revived with gold: " + playerGold);*/
+
+        //CoinManager.instance.coins = ItemDatabase.instance.money;
+        //int coins = CoinManager.instance.coins;
        // int coin = ItemDatabase.instance.money ;
        //CoinManager.instance.coins = ItemDatabase.instance.money;
        // CoinManager.instance.UpdateCoinsDisplay();

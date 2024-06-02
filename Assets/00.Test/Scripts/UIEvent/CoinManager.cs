@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
+using JetBrains.Annotations;
 
 public class CoinManager : MonoBehaviour
 {
@@ -13,10 +14,20 @@ public class CoinManager : MonoBehaviour
 
     private void Awake()
     {
-        if (!instance)
+        /*if (!instance)
         {
             instance = this;
+        }*/
+    if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
+        else
+        {
+            Destroy(gameObject);
+        }
+
     }
 
     private void Start()
@@ -29,10 +40,12 @@ public class CoinManager : MonoBehaviour
         coinsDisplay.text = coins.ToString();
     }
 
+    
     public void ChangeCoins(int amount)
     {
         coins += amount;
         UpdateCoinsDisplay();
         ItemDatabase.instance.money = coins;
+        
     }
 }

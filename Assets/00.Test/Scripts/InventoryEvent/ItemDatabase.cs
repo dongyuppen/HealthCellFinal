@@ -11,7 +11,16 @@ public class ItemDatabase : MonoBehaviour
 
     private void Awake()
     {
-        instance = this; // Assigning the current instance to the static reference
+        //instance = this; // Assigning the current instance to the static reference
+         if (instance == null)
+        {
+            instance = this; // Assigning the current instance to the static reference
+            DontDestroyOnLoad(gameObject); // 씬이 바뀌어도 이 오브젝트가 파괴되지 않도록 설정
+        }
+        else
+        {
+            Destroy(gameObject); // 이미 인스턴스가 존재하면 중복 생성 방지
+        }
     }
 
     private void Start()

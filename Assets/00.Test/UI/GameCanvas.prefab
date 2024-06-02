@@ -77,7 +77,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 16
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1280, y: 720}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -110,6 +110,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3234418279722647096}
     m_Modifications:
+    - target: {fileID: 708968891567847049, guid: 8eeac2602f7fd964ca731ea71bef67b8, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: d230e0583671849f899d33b876ee16bb, type: 2}
+    - target: {fileID: 708968891567847049, guid: 8eeac2602f7fd964ca731ea71bef67b8, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -574247323620028694, guid: d230e0583671849f899d33b876ee16bb, type: 2}
     - target: {fileID: 3447572666465992254, guid: 8eeac2602f7fd964ca731ea71bef67b8, type: 3}
       propertyPath: m_Name
       value: HealthBar

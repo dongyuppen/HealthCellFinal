@@ -4,44 +4,61 @@ using UnityEngine;
 
 public class ParallaxEffect : MonoBehaviour
 {
-    // Reference to the camera used for parallax effect
-    public Camera cam;
-    // Reference to the target the parallax effect follows
-    public Transform followTarget;
+    Transform cam;
+    Vector3 camStartPos;
+    float distance;
 
-    // Starting position for the parallax game object
-    Vector2 startingPosition;
+    GameObject[] backgrounds;
+    Material[] mat;
+    float[] backSpeed;
 
-    // Start z value of the parallax game object
-    float startingZ;
+    float farthestBack;
 
-    // Calculates the distance that the camera has moved since the start
-    Vector2 camMoveSinceStart => (Vector2)cam.transform.position - startingPosition;
+    [Range(0.01f,0.05f)]
+    public float parallaxSpeed;
 
-    // Calculates the z distance between the parallax object and the target
-    float zDistanceFromTarget => transform.position.z - followTarget.transform.position.z;
-
-    // Calculates the clipping plane distance based on camera position and z distance from the target
-    float clippingPlane => (cam.transform.position.z + (zDistanceFromTarget > 0 ? cam.farClipPlane : cam.nearClipPlane));
-
-    // Calculates the parallax factor based on z distance from the target and clipping plane
-    float parallaxFactor => Mathf.Abs(zDistanceFromTarget) / clippingPlane;
-
-    // Start is called before the first frame update
     void Start()
     {
-        // Store the starting position and z value of the parallax object
-        startingPosition = transform.position;
-        startingZ = transform.position.z;
+        cam = Camera.main.transform;
+        camStartPos = cam.position;
+
+        int backCount = transform.childCount;
+        mat = new Material[backCount];
+        backSpeed = new float[backCount];
+        backgrounds = new GameObject[backCount];
+
+        for (int i = 0; i < backCount; i++) 
+        {
+            backgrounds[i] = transform.GetChild(i).gameObject;
+            mat[i] = backgrounds[i].GetComponent<Renderer>().material;
+        }
+        BackSpeedCalculate(backCount);
     }
-
-    // Update is called once per frame
-    void Update()
+    void BackSpeedCalculate(int backCount)
     {
-        // Calculate the new position based on the parallax effect
-        Vector2 newPosition = startingPosition + camMoveSinceStart * parallaxFactor;
+        for(int i = 0;i < backCount;i++)
+        {
+            if ((backgrounds[i].transform.position.z - camStartPos.z) > farthestBack)
+            {
+                farthestBack = backgrounds[i].transform.position.z - cam.position.z;
+            }
+        
+        }
 
-        // Apply the new position to the parallax object
-        transform.position = new Vector3(newPosition.x, newPosition.y,startingZ);
+        for (int i = 0; i < backCount; i++)
+        {
+            backSpeed[i] = 1 - (backgrounds[i].transform.position.z - cam.position.z) / farthestBack;
+        }
+    }
+    private void LateUpdate()
+    {
+        distance = cam.position.x - camStartPos.x;
+        transform.position = new Vector3(cam.position.x, cam.position.y,0);
+
+        for(int i = 0; i< backgrounds.Length; i++) 
+        {
+            float speed = backSpeed[i] * parallaxSpeed;
+            mat[i].SetTextureOffset("_MainTex", new Vector2(distance,0)*speed);
+        }
     }
 }

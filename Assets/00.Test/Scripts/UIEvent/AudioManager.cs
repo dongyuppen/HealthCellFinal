@@ -24,8 +24,7 @@ public class AudioManager : MonoBehaviour
     public static AudioSource[] sfxPlayers;
     int channelIndex;// 맨 마지막에 실행된 오디오 플레이어
 
-    public enum sfx{damage, damageTwo, fail, hit, hitTwo, MonsterDie, coin, 
-    Jump, re, dash, run, mHit, pHit, W, mHitI, BGM, Death}
+    public enum sfx{damage, damageTwo, fail, hit, hitTwo, MonsterDie, coin, Jump, re, dash, run, mHit, pHit, W, mHitI, BGM, Death, Typing}
 
     void Awake() 
     {

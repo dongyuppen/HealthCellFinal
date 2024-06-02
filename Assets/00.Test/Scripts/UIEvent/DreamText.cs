@@ -12,6 +12,15 @@ using JetBrains.Annotations;
 
 public class DreamText : MonoBehaviour
 {
+
+    
+    [Header("#Typing")]
+    public AudioClip TypingClip;
+    public float TypingVolume;
+    public static AudioSource TypingPlayer;
+
+
+    
 public TMP_Text tutorialTxt;
 
     //public Text text;
@@ -27,11 +36,28 @@ public TMP_Text tutorialTxt;
         StartTalk(tutorialDialogue);
     }
 
+
+    
+
+   GameObject TypingObject = new GameObject("TypingPlayer");
    IEnumerator Typing (String talk)
    {
     //텍스트를 null 값으로 설정
     tutorialTxt.text = null;
+
+
+
+    // 타이핑 소리를 재생
+    if (TypingPlayer != null && TypingClip != null)
+    {
+        TypingPlayer.clip = TypingClip;
+        TypingPlayer.volume = TypingVolume;
+        TypingPlayer.Play();
+    }
+
+
     tutorialTxt.DOText(talk, 4f, true, ScrambleMode.Numerals).SetDelay(2); // 모든 문자가 출력되는데 걸리는 시간 = N초 
+    
 
     // 다음 대사 딜레이 
     yield return new WaitForSeconds(4.0f); // 딜레이 N초
@@ -47,6 +73,9 @@ public TMP_Text tutorialTxt;
 
         //tutoNum 번째 대사 출력 
         StartCoroutine(Typing(dialogues[talkNum]));
+        
+        
+        
     }
 
     public void NextTalk()

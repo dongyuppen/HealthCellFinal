@@ -10,6 +10,10 @@ public class CoinManager : MonoBehaviour
     public static CoinManager instance;
 
     public int coins;
+
+    public int savedCoins;
+
+    
     [SerializeField] private TMP_Text coinsDisplay;
 
     private void Awake()
@@ -29,10 +33,11 @@ public class CoinManager : MonoBehaviour
         }
 
     }
-
+   
     private void Start()
     {
         coins = ItemDatabase.instance.money;
+        //coins = CoinManager.instance.savedCoins;
     }
 
     public void UpdateCoinsDisplay()

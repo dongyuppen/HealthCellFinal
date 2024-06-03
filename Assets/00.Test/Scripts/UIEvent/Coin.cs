@@ -17,6 +17,7 @@ public class Coin : MonoBehaviour
     void Start()
     {
         coinManager = CoinManager.instance;
+       
     }
 
     // Update is called once per frame

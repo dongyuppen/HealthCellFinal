@@ -69,10 +69,11 @@ public class Damageable : MonoBehaviour
         }
     }
     IEnumerator Die(float time)
-    {
+    {   
         AudioManager.instance.PlaySfx(AudioManager.sfx.fail);
         yield return new WaitForSeconds(time); 
         AudioManager.instance.PlayBgm(false);
+        //GameManager.onDeath();
         SceneManager.LoadScene("DieScene");
 
 

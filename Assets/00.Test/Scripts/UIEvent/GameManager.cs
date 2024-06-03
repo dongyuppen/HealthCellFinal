@@ -104,20 +104,21 @@ public class GameManager : MonoBehaviour
          
 
     }
-   
+    public static int playerGold;
     public void re ()  // Revive
     {
         
         SceneManager.LoadScene("TestScene0602_1952");
         DreamText.isActing =true;
+       // OnRespawn();
 
         /*int playerGold = ItemDatabase.instance.money;
-    Debug.Log("Loaded Player Gold: " + playerGold);
+        Debug.Log("Loaded Player Gold: " + playerGold);
 
-    CoinManager.instance.coins = playerGold;
-    CoinManager.instance.UpdateCoinsDisplay();
+        CoinManager.instance.coins = playerGold;
+        CoinManager.instance.UpdateCoinsDisplay();
 
-    Debug.Log("Player revived with gold: " + playerGold);*/
+        Debug.Log("Player revived with gold: " + playerGold);*/
 
         //CoinManager.instance.coins = ItemDatabase.instance.money;
         //int coins = CoinManager.instance.coins;
@@ -126,4 +127,16 @@ public class GameManager : MonoBehaviour
        // CoinManager.instance.UpdateCoinsDisplay();
        //int _coin = CoinManager.coins;
     }
+
+    
+
+    /*public static void onDeath()
+    {
+        CoinManager.instance.savedCoins = CoinManager.instance.coins;
+    }
+
+    public static void OnRespawn()
+    {
+        CoinManager.instance.coins = CoinManager.instance.savedCoins;
+    }*/
 }

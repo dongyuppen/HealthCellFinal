@@ -13,4 +13,5 @@ public class SOPlayer : ScriptableObject
     public int airAttackDamage2; // airAttackDamage2
     public float attackSpeed; // attackSpeed
     public int maxHealth; // maxhealth
+    public int coins;
 }

@@ -16,7 +16,7 @@ public class ShopSlot : MonoBehaviour,IPointerUpHandler
     {
         inventoryUI = Iui;
     }
-    
+   
     // Method to update the slot UI with the item's icon
     public void UpdateSlotUI()
     {
@@ -41,9 +41,9 @@ public class ShopSlot : MonoBehaviour,IPointerUpHandler
     {
         if (item != null)
         {
-            if (ItemDatabase.instance.money >= item.itemCost && !soldOut && Inventory.instance.items.Count < Inventory.instance.SlotCnt)
+            if (CoinManager.instance.coins >= item.itemCost && !soldOut && Inventory.instance.items.Count < Inventory.instance.SlotCnt)
             {
-                ItemDatabase.instance.money -= item.itemCost;
+                CoinManager.instance.coins -= item.itemCost;
                 Inventory.instance.AddItem(item);
                 soldOut = true;
                 inventoryUI.Buy(slotNum);

@@ -3,54 +3,52 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
-using JetBrains.Annotations;
 
 public class CoinManager : MonoBehaviour
 {
     public static CoinManager instance;
 
-    public int coins;
+    // Reference to the ScriptableObject containing player's data
+    public SOPlayer playerData;
 
-    public int savedCoins;
 
-    
+
+    public int coins = 0;
     [SerializeField] private TMP_Text coinsDisplay;
 
     private void Awake()
     {
-        /*if (!instance)
-        {
-            instance = this;
-        }*/
-    if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
 
+        if (!instance)
+        {
+            instance = this;
+        }
+        InitializeCoinsFromPlayerData();
+        UpdateCoinsDisplay();
     }
+
    
-    private void Start()
-    {
-        coins = ItemDatabase.instance.money;
-        //coins = CoinManager.instance.savedCoins;
-    }
 
     public void UpdateCoinsDisplay()
     {
         coinsDisplay.text = coins.ToString();
     }
 
-    
     public void ChangeCoins(int amount)
     {
         coins += amount;
         UpdateCoinsDisplay();
-        ItemDatabase.instance.money = coins;
-        
     }
+
+
+    private void InitializeCoinsFromPlayerData()
+    {
+        if (playerData != null)
+        {
+            coins = playerData.coins;
+           
+        }
+       
+    }
+
 }

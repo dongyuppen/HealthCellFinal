@@ -24,7 +24,9 @@ public class Damageable : MonoBehaviour
 
     Animator animator;
 
-    
+    CoinManager coinManager;
+
+   
     //private Color originalColor;
     private SpriteRenderer spriteRenderer;
 
@@ -69,11 +71,10 @@ public class Damageable : MonoBehaviour
         }
     }
     IEnumerator Die(float time)
-    {   
+    {
         AudioManager.instance.PlaySfx(AudioManager.sfx.fail);
-        yield return new WaitForSeconds(time); 
+        yield return new WaitForSeconds(time);
         AudioManager.instance.PlayBgm(false);
-        //GameManager.onDeath();
         SceneManager.LoadScene("DieScene");
 
 
@@ -81,7 +82,7 @@ public class Damageable : MonoBehaviour
  
 
 
-    
+   
     // Flag indicating whether the damageable entity is alive or not
     [SerializeField]
     private bool _isAlive = true;
@@ -127,6 +128,7 @@ public class Damageable : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        coinManager = GetComponent<CoinManager>();
         InitializeLevelFromPlayerData();
         InitializeHealthFromPlayerData();
     }
@@ -178,7 +180,7 @@ public class Damageable : MonoBehaviour
         }
     }
 
-    
+   
 
     private void UpdatePlayerDataAfterDead()
     {
@@ -195,11 +197,13 @@ public class Damageable : MonoBehaviour
 
             // Update player's attack speed in player data after Dead
             playerData.attackSpeed = GetComponent<AttackSpeed>().atkSpeed;
+
+            playerData.coins = CoinManager.instance.coins;
         }
     }
 
     //Original Code: make player opacity
-    /* 
+    /*
     private void MakePlayerTransparent(float duration, float alphaValue)
     {
         Color tempColor = spriteRenderer.color;
@@ -210,7 +214,7 @@ public class Damageable : MonoBehaviour
         Invoke("ResetPlayerColor", duration);
     }
 
-  
+ 
     private void ResetPlayerColor()
     {
         spriteRenderer.color = originalColor;
@@ -239,13 +243,13 @@ public class Damageable : MonoBehaviour
         if (IsAlive && !isInvincible)
         {
             StartCoroutine(FlashPlayer(invincibilityTime, 0.1f)); // Flash effect
-            
+           
             //MakePlayerTransparent(0.5f, 0.5f); //Original Code: make player opacity
 
             // Reduce health by damage amount
             Health -= damage;
             AudioManager.instance.PlaySfx(AudioManager.sfx.pHit);
-            
+           
             isInvincible = true; // Set invincibility
 
             // Notify other subscribed components that the damageable was hit to handle the knockback and such
@@ -253,7 +257,7 @@ public class Damageable : MonoBehaviour
             LockVelocity = true;
             damageableHit?.Invoke(damage, knockback);
             CharacterEvents.characterDamaged.Invoke(gameObject, damage);
-            
+           
             return true;
         }
         // Unable to be hit

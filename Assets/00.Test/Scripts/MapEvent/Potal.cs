@@ -49,10 +49,10 @@ public class Potal : MonoBehaviour
             yield return null;
         }
         time = 0f;
-        Debug.Log("2¹øÃ³¸®¿Ï·á");
+        Debug.Log("2ï¿½ï¿½Ã³ï¿½ï¿½ï¿½Ï·ï¿½");
 
         StageMgr.Instance.NextStage();
-        // StageMgr ÄÄÆ÷³ÍÆ®ÀÇ NextStage ÇÔ¼ö È£Ãâ
+        // StageMgr ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ NextStage ï¿½Ô¼ï¿½ È£ï¿½ï¿½
         yield return new WaitForSeconds(1f);
 
         while (alpha.a > 0f)
@@ -63,7 +63,7 @@ public class Potal : MonoBehaviour
             yield return null;
         }
         fadePanel.gameObject.SetActive(false);
-        Debug.Log("3¹øÃ³¸®¿Ï·á");
+        Debug.Log("3ï¿½ï¿½Ã³ï¿½ï¿½ï¿½Ï·ï¿½");
         yield return null;
     }
 }

@@ -4,12 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class EnemyDamageable : MonoBehaviour
 
-{
+{   public Image fadePanel;
+    float time = 0f;
+    float Fadetime = 1f;
+    
+    public bool isBoss = false;
     public int level;
+
+    
 
     // Event for when the damageble object is hit, includes damage amount and knockback direction
     public UnityEvent<int, Vector2> damageableHit;
@@ -99,6 +106,7 @@ public class EnemyDamageable : MonoBehaviour
                 damageableDeath.Invoke();
                 DropItem();
                 DropCoin();
+                
             }
         }
     }
@@ -143,10 +151,13 @@ public class EnemyDamageable : MonoBehaviour
         InitializeLevelFromMonsterData();
         InitializeHealthFromMonsterData();
     }
+    
 
+     private BossController bossController;
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        bossController = GetComponent<BossController>();
     }
 
     private void Update()
@@ -163,7 +174,43 @@ public class EnemyDamageable : MonoBehaviour
 
             timeSinceHit += Time.deltaTime;
         }
+
+    if(isBoss == true && Health <= 0)
+    {      
+        StartCoroutine(FadeOutIn());
     }
+
+    }
+    IEnumerator FadeOutIn()
+    {   
+        bossController.OnBossDefeated();
+        yield return new WaitForSeconds(2f);
+        fadePanel.gameObject.SetActive(true);
+        Color alpha = fadePanel.color;
+        while(alpha.a < 1f)
+        {
+            time += Time.deltaTime / Fadetime;
+            alpha.a = Mathf.Lerp(0, 1, time);
+            fadePanel.color = alpha;
+            yield return null;
+        }
+        time = 0f;
+        Debug.Log("on");
+        Invoke("GoEnding", 1.5f);
+        yield return null;
+    }
+
+
+    public void GoEnding () 
+    {
+        
+        if(isBoss == true && Health <= 0)
+    {
+         SceneManager.LoadScene("LoadingScene"); 
+    }
+
+    }
+
 
     private void InitializeLevelFromMonsterData()
     {

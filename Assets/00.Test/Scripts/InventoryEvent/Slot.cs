@@ -56,12 +56,13 @@ public class Slot : MonoBehaviour,IPointerUpHandler
     {
         if(isSell)
         {
-            // Adding money for selling the item
-            ItemDatabase.instance.money += item.itemCost;
+            // Adding coins for selling the item
+            CoinManager.instance.coins += item.itemCost;
             // Removing the item from the inventory
             Inventory.instance.RemoveItem(slotNum);
             isSell = false; // Resetting the selling flag
             chkSell.SetActive(isSell); // Deactivating the UI indicator for selling
+            CoinManager.instance.UpdateCoinsDisplay(); // Update Coin UI
         }
     }
 

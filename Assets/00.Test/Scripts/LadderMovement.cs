@@ -9,6 +9,8 @@ public class LadderMovement : MonoBehaviour
     private bool isLadder;
     private bool isClimbing;
 
+    Animator animator;
+
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Collider2D cd;
@@ -19,7 +21,7 @@ public class LadderMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         cd = GetComponent<Collider2D>();
         touchingDirections = GetComponent<TouchingDirections>();
-
+        animator = GetComponent<Animator>();
 
 
     }
@@ -37,6 +39,7 @@ public class LadderMovement : MonoBehaviour
     {
         if (isClimbing)
         {
+            animator.SetBool("isLadder", true);
             cd.isTrigger = true;
             rb.gravityScale = 0f;
             rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
@@ -67,6 +70,7 @@ public class LadderMovement : MonoBehaviour
     {
         if (collision.CompareTag("Ladder"))
         {
+            animator.SetBool("isLadder", false);
             isLadder = false;
             isClimbing = false;
            

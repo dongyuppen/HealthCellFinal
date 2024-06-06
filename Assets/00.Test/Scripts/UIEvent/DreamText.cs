@@ -110,7 +110,7 @@ public TMP_Text tutorialTxt;
        public void LoadScene()  
     {
        // AudioManager.instance.PlayBgm(true);
-        SceneManager.LoadScene("TestScene0602_1952");
+        SceneManager.LoadScene("GamePlayScene");
        
         
     }

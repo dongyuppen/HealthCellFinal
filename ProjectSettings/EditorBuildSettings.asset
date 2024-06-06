@@ -22,7 +22,7 @@ EditorBuildSettings:
     guid: 0192fabe4525a4f95ae6ae54c84ff0bc
   - enabled: 1
     path: Assets/00.Test/Scenes/GamePlayScene.unity
-    guid: f13359ec620a21346861e778c9102ae6
+    guid: 20d5616265e218a4890d8ba6e0f3a899
   - enabled: 1
     path: Assets/00.Test/Scenes/DieScene.unity
     guid: d3a86c869e75749bc80b27db94cb6ac5

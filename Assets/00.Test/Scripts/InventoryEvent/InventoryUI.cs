@@ -8,6 +8,8 @@ public class InventoryUI : MonoBehaviour
 {
     Inventory inven; // Reference to the Inventory script
 
+    public GameObject player;
+
     public GameObject inventoryPanel; // Reference to the GameObject representing the inventory panel
     bool activeInventory = false; // Flag to track if the inventory panel is active or not
 
@@ -16,8 +18,18 @@ public class InventoryUI : MonoBehaviour
     public ShopSlot[] shopSlots; // Array to hold references to all shop slots in the shop UI
     public Transform shopHolder; // Reference to the parent transform holding all shop slots
 
+    public GameObject shop; // Reference to the shop UI GameObject
+    public Button closeShop; // Reference to the close button for the shop
+    public bool isStoreActive; // Flag to track if the shop is currently active
+
+    public ShopData shopData; // Reference to the data for the current shop
+
+    public float shopOpenDistance = 1f; // Maximum distance to open the shop
+
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+
         // Getting the Inventory instance
         inven = Inventory.instance;
         // Getting references to all slots
@@ -71,10 +83,10 @@ public class InventoryUI : MonoBehaviour
             inventoryPanel.SetActive(activeInventory);
         }
 
-        // Checking for mouse button up to raycast for shop
-        if (Input.GetMouseButtonUp(0))
+        // Opening the shop when 'P' key is pressed
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            RayShop();
+            TryOpenShop();
         }
     }
 
@@ -88,47 +100,37 @@ public class InventoryUI : MonoBehaviour
     void RedrawSlotUI()
     {
         // Removing all slots from the UI
-        for (int i = 0;i < slots.Length; i++)
+        for (int i = 0; i < slots.Length; i++)
         {
             slots[i].RemoveSlot();
         }
         // Adding items to the slots and updating their UI
-        for (int i = 0; i<inven.items.Count; i++)
+        for (int i = 0; i < inven.items.Count; i++)
         {
             slots[i].item = inven.items[i]; // Assigning the item to the slot
             slots[i].UpdateSlotUI(); // Updating the slot UI
         }
     }
 
-    public GameObject shop; // Reference to the shop UI GameObject
-    public Button closeShop; // Reference to the close button for the shop
-    public bool isStoreActive; // Flag to track if the shop is currently active
-
-    public ShopData shopData; // Reference to the data for the current shop
-
-    // Method to raycast and check if the mouse hits the shop
-    public void RayShop()
+    // Method to attempt opening the shop when near
+    void TryOpenShop()
     {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = -10;
-        if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject(-1)) // Mobile = 0
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(player.transform.position, shopOpenDistance);
+        foreach (var hitCollider in hitColliders)
         {
-            RaycastHit2D hit2D = Physics2D.Raycast(mousePos, transform.forward, 30);
-            if (hit2D.collider != null)
+            if (hitCollider.CompareTag("Store"))
             {
-                if (hit2D.collider.CompareTag("Store"))
+                if (!isStoreActive)
                 {
-                    if (!isStoreActive)
+                    ActiveShop(true); // Opening the shop UI
+                    shopData = hitCollider.GetComponent<ShopData>(); // Getting shop data
+                    // Updating shop slots with available stocks
+                    for (int i = 0; i < shopData.stocks.Count; i++)
                     {
-                        ActiveShop(true); // Opening the shop UI
-                        shopData = hit2D.collider.GetComponent<ShopData>(); // Getting shop data
-                        // Updating shop slots with available stocks
-                        for (int i = 0; i < shopData.stocks.Count; i++)
-                        {
-                            shopSlots[i].item = shopData.stocks[i];
-                            shopSlots[i].UpdateSlotUI();
-                        }
+                        shopSlots[i].item = shopData.stocks[i];
+                        shopSlots[i].UpdateSlotUI();
                     }
+                    break;
                 }
             }
         }

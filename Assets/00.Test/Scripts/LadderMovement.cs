@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class LadderMovement : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class LadderMovement : MonoBehaviour
     public float climbspeed = 8f;
     private bool isLadder;
     private bool isClimbing;
+
+    private Tilemap ladderTilemap;
+    private Vector3Int ladderCellPosition;
 
     Animator animator;
 
@@ -44,6 +48,8 @@ public class LadderMovement : MonoBehaviour
             rb.gravityScale = 0f;
             rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
             rb.velocity = new Vector2(rb.velocity.x, vertical * climbspeed);
+
+            AlignToTileCenter();
         }
         else if(touchingDirections.IsGrounded)
         {
@@ -62,7 +68,14 @@ public class LadderMovement : MonoBehaviour
     {
         if (collision.CompareTag("Ladder"))
         {
-            isLadder = true;
+            TilemapCollider2D tilemapCollider = collision.GetComponent<TilemapCollider2D>();
+            if (tilemapCollider != null)
+            {
+                ladderTilemap = tilemapCollider.GetComponent<Tilemap>();
+                Vector3 worldPosition = transform.position;
+                ladderCellPosition = ladderTilemap.WorldToCell(worldPosition);
+                isLadder = true;
+            }      
         }
     }
 
@@ -74,6 +87,19 @@ public class LadderMovement : MonoBehaviour
             isLadder = false;
             isClimbing = false;
            
+        }
+    }
+
+    void AlignToTileCenter()
+    {
+        if (ladderTilemap != null)
+        {
+            Vector3Int cellPosition = ladderTilemap.WorldToCell(transform.position);
+            Vector3 tileCenterPosition = ladderTilemap.GetCellCenterWorld(cellPosition);
+            transform.position = new Vector3(tileCenterPosition.x, transform.position.y, transform.position.z);
+            
+            Debug.Log($"Tile Center Position: {tileCenterPosition}, Character Position: {transform.position}");
+
         }
     }
 }

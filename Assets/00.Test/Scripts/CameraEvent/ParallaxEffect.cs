@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ParallaxEffect : MonoBehaviour
-{
+{/*
     Transform cam;
     Vector3 camStartPos;
     float distance;
@@ -61,4 +61,5 @@ public class ParallaxEffect : MonoBehaviour
             mat[i].SetTextureOffset("_MainTex", new Vector2(distance,0)*speed);
         }
     }
+*/
 }

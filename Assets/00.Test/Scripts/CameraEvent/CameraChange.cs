@@ -12,7 +12,7 @@ public class CameraChange : MonoBehaviour
         if(collision.CompareTag("Player")) 
         {
             virtualCam.SetActive(true);
-            BackGround.SetActive(true);
+            //BackGround.SetActive(true);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -20,7 +20,7 @@ public class CameraChange : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             virtualCam.SetActive(false);
-            BackGround.SetActive(false);
+            //BackGround.SetActive(false);
         }
     }
 }

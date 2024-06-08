@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using JetBrains.Annotations;
+using TMPro;
 
 
 public class EnemyDamageable : MonoBehaviour
@@ -160,6 +162,7 @@ public class EnemyDamageable : MonoBehaviour
         bossController = GetComponent<BossController>();
     }
 
+ public static bool bossDie = false;
     private void Update()
     {
         // Update invincibility state(timer)
@@ -176,7 +179,9 @@ public class EnemyDamageable : MonoBehaviour
         }
 
     if(isBoss == true && Health <= 0)
-    {      
+    {  
+        AudioManager.instance.StopSfx(AudioManager.sfx.BossMap);
+        AudioManager.instance.PlaySfx(AudioManager.sfx.BossDie);
         StartCoroutine(FadeOutIn());
     }
 
@@ -184,7 +189,7 @@ public class EnemyDamageable : MonoBehaviour
     IEnumerator FadeOutIn()
     {   
         bossController.OnBossDefeated();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
         fadePanel.gameObject.SetActive(true);
         Color alpha = fadePanel.color;
         while(alpha.a < 1f)
@@ -196,19 +201,17 @@ public class EnemyDamageable : MonoBehaviour
         }
         time = 0f;
         Debug.Log("on");
-        Invoke("GoEnding", 1.5f);
+        Invoke("GoEnding", 4.0f);
         yield return null;
     }
 
 
     public void GoEnding () 
     {
-        
         if(isBoss == true && Health <= 0)
-    {
-         SceneManager.LoadScene("LoadingScene"); 
-    }
-
+        {
+            SceneManager.LoadScene("EndingScene"); 
+        }
     }
 
 

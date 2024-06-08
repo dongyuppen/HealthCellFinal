@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/00.Test/Scenes/DieScene.unity
     guid: d3a86c869e75749bc80b27db94cb6ac5
+  - enabled: 1
+    path: Assets/00.Test/Scenes/EndingScene.unity
+    guid: e8db488363a594a898fd58cf6143d6c4
+  - enabled: 1
+    path: Assets/00.Test/Scenes/ToBeContinue.unity
+    guid: c894f48fa698d402aa8677177c31d386
   m_configObjects: {}

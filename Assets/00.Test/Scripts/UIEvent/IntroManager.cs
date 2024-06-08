@@ -18,6 +18,7 @@ public class IntroManager : MonoBehaviour
         //내가 정한 초(2초)를 기다린 다음 실행 
         IntroPanel.SetActive(false);
         StartPanel.SetActive(true); 
+       
         //2초뒤에 인트로 패널 비활성화, 스타트 패널 활성화 
     }
 

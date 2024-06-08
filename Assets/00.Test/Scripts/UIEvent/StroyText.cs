@@ -30,10 +30,10 @@ public class StroyText : MonoBehaviour
    {
     //텍스트를 null 값으로 설정
     tutorialTxt.text = null;
-    tutorialTxt.DOText(talk, 6f); // 모든 문자가 출력되는데 걸리는 시간 = 1초 
+    tutorialTxt.DOText(talk, 3f); // 모든 문자가 출력되는데 걸리는 시간 = 1초 
 
     // 다음 대사 딜레이 
-    yield return new WaitForSeconds(8.0f);
+    yield return new WaitForSeconds(4.0f);
     NextTalk();
    }
 

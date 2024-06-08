@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
         ResumeGame();
         //theAudio.Play(cancel_sound);
     }
+
     public void GoTitle() //타이틀로
     {
         ResumeGame();
@@ -108,7 +109,7 @@ public class GameManager : MonoBehaviour
     public void re ()  // Revive
     {
         
-        SceneManager.LoadScene("TestScene0602_1952");
+        SceneManager.LoadScene("GamePlayScene");
         DreamText.isActing =true;
        // OnRespawn();
 

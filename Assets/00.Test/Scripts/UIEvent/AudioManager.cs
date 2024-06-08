@@ -24,8 +24,7 @@ public class AudioManager : MonoBehaviour
     public static AudioSource[] sfxPlayers;
     int channelIndex;// 맨 마지막에 실행된 오디오 플레이어
 
-    public enum sfx{damage, damageTwo, fail, hit, hitTwo, MonsterDie, coin, Jump, re, dash, run,
-     mHit, pHit, W, mHitI, BGM, Death, Typing}
+    public enum sfx{damage, damageTwo, fail, hit, BossMap, MonsterDie, coin, Jump, re, dash, run, BossDie, pHit, W, mHitI, BGM, Death}
 
     void Awake() 
     {
@@ -102,7 +101,7 @@ public class AudioManager : MonoBehaviour
     //내가 오디오 쓰고 싶은 곳에 이 코드 작성하면 됌 (함수안에)
     }
 
-   /* public void StopSfx(sfx sfx)
+    public void StopSfx(sfx sfx)
 {
     for(int index = 0; index < sfxPlayers.Length; index++)
     {
@@ -112,7 +111,7 @@ public class AudioManager : MonoBehaviour
             break;
         }
     }
-}*/
+}
 
     
 }

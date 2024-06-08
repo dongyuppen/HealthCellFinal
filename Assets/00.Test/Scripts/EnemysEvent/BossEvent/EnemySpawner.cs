@@ -13,6 +13,8 @@ public class EnemySpawner : MonoBehaviour
     {
         // Start the coroutine
         StartCoroutine(SpawnEnemy());
+
+
     }
 
     IEnumerator SpawnEnemy()
@@ -46,6 +48,8 @@ public class EnemySpawner : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInBossMap = true;
+            AudioManager.instance.PlayBgm(false);
+            AudioManager.instance.PlaySfx(AudioManager.sfx.BossMap);
         }
     }
 
@@ -54,6 +58,7 @@ public class EnemySpawner : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInBossMap = false;
+            
         }
     }
 }

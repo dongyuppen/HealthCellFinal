@@ -103,8 +103,8 @@ public TMP_Text tutorialTxt;
         talkNum = 0;
         Debug.Log("자막 끝!");
         
-        Invoke("LoadScene", 6.5f);
-         isActing = true;
+        Invoke("LoadScene", 4.0f);
+        isActing = true;
     }
 
        public void LoadScene()  

@@ -5,11 +5,17 @@ using UnityEngine.Tilemaps;
 
 public class BreakPlatform : MonoBehaviour
 {
+    private Animator animator;
     // Platform broken or not.
     private bool isBroken = false;
 
     // Platform regeneration time.
     private float respawnTime = 5f;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     // OnCollisionEnter2D Verify that the player has stepped on the Platform in response to the event.
     private void OnCollisionEnter2D(Collision2D collision)
@@ -19,7 +25,7 @@ public class BreakPlatform : MonoBehaviour
         {
             // If you step on it, set isBroken to true.
             isBroken = true;
-
+            animator.SetBool("BrokenStart", true);
             // It will be broken in one second.
             Invoke("Breakplatform", 1f);
         }
@@ -30,7 +36,6 @@ public class BreakPlatform : MonoBehaviour
     {
         // Off platform.
         gameObject.SetActive(false);
-
         // Respawn the platform.
         Invoke("Respawnplatform", respawnTime);
     }
@@ -39,7 +44,7 @@ public class BreakPlatform : MonoBehaviour
     private void Respawnplatform()
     {
         gameObject.SetActive(true);
-
+        animator.SetBool("BrokenStart", false);
         isBroken = false;
     }
 }

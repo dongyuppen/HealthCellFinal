@@ -63,7 +63,6 @@ public class RandomCircleDamage : MonoBehaviour
 
             // Wait until the bomb explodes
             yield return new WaitForSeconds(bombLifetime);
-
             // Bomb explosion and damage applied
             CheckPlayerInCircle(spawnedCircle);
 

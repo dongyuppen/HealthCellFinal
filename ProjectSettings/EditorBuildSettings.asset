@@ -22,14 +22,14 @@ EditorBuildSettings:
     guid: 0192fabe4525a4f95ae6ae54c84ff0bc
   - enabled: 1
     path: Assets/00.Test/Scenes/GamePlayScene.unity
-    guid: 20d5616265e218a4890d8ba6e0f3a899
+    guid: cb16377b867f64bb5afa8ad5f34c844e
   - enabled: 1
     path: Assets/00.Test/Scenes/DieScene.unity
     guid: d3a86c869e75749bc80b27db94cb6ac5
   - enabled: 1
     path: Assets/00.Test/Scenes/EndingScene.unity
     guid: e8db488363a594a898fd58cf6143d6c4
-  - enabled: 1
+  - enabled: 0
     path: Assets/00.Test/Scenes/ToBeContinue.unity
     guid: c894f48fa698d402aa8677177c31d386
   m_configObjects: {}

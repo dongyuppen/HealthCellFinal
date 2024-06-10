@@ -11,6 +11,16 @@ public class Potal : MonoBehaviour
     public Image fadePanel;
     float time = 0f;
     float Fadetime = 1f;
+
+    Rigidbody2D rb;
+    Damageable damageable;
+
+    private void Awake()
+    {
+        damageable = GameObject.FindGameObjectWithTag("Player").GetComponent<Damageable>();
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     public static Potal Instance // singlton >> singlton call other script function
     {
         get
@@ -29,16 +39,19 @@ public class Potal : MonoBehaviour
     }
     private static Potal instance;
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Potal"))
         {
+
             StartCoroutine(FadeOutIn());
+            
         }
     }
     IEnumerator FadeOutIn()
     {
+        damageable.isInvincible = true;
+        damageable.invincibilityTime = 4;
         fadePanel.gameObject.SetActive(true);
         Color alpha = fadePanel.color;
         while(alpha.a < 1f)
@@ -49,12 +62,10 @@ public class Potal : MonoBehaviour
             yield return null;
         }
         time = 0f;
-        Debug.Log("2��ó���Ϸ�");
-
+        rb.drag = 1000f;
         StageMgr.Instance.NextStage();
-        // StageMgr ������Ʈ�� NextStage �Լ� ȣ��
         yield return new WaitForSeconds(1f);
-
+        rb.drag = 0f;
         while (alpha.a > 0f)
         {
             time += Time.deltaTime / Fadetime;
@@ -63,7 +74,9 @@ public class Potal : MonoBehaviour
             yield return null;
         }
         fadePanel.gameObject.SetActive(false);
-        Debug.Log("3��ó���Ϸ�");
+        yield return new WaitForSeconds(1.0f);
+        damageable.isInvincible = false;
+        damageable.invincibilityTime = 1f;
         yield return null;
     }
 }

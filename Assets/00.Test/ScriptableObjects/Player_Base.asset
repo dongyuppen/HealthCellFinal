@@ -20,4 +20,4 @@ MonoBehaviour:
   airAttackDamage2: 15
   attackSpeed: 1
   maxHealth: 100
-  coins: 20000
+  coins: 0
